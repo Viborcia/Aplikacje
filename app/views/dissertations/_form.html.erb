@@ -1,0 +1,52 @@
+<%= form_with(model: dissertation) do |form| %>
+  <% if dissertation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(dissertation.errors.count, "error") %> prohibited this dissertation from being saved:</h2>
+
+      <ul>
+        <% dissertation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :index, style: "display: block" %>
+    <%= form.number_field :index %>
+  </div>
+
+  <div>
+    <%= form.label :student_index, style: "display: block" %>
+    <%= form.number_field :student_index %>
+  </div>
+
+  <div>
+    <%= form.label :promoter_index, style: "display: block" %>
+    <%= form.number_field :promoter_index %>
+  </div>
+
+  <div>
+    <%= form.label :sending_date, style: "display: block" %>
+    <%= form.datetime_field :sending_date %>
+  </div>
+
+  <div>
+    <%= form.label :feedback, style: "display: block" %>
+    <%= form.text_field :feedback %>
+  </div>
+
+  <div>
+    <%= form.label :mark, style: "display: block" %>
+    <%= form.number_field :mark %>
+  </div>
+
+  <div>
+    <%= form.label :review, style: "display: block" %>
+    <%= form.text_field :review %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Dissertations</h1>
+
+<div id="dissertations">
+  <% @dissertations.each do |dissertation| %>
+    <%= render dissertation %>
+    <p>
+      <%= link_to "Show this dissertation", dissertation %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New dissertation", new_dissertation_path %>

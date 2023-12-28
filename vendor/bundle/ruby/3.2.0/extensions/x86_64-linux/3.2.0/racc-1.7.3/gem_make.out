@@ -1,0 +1,18 @@
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+/root/.asdf/installs/ruby/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20231228-1485-hnjytn sitelibdir\=./.gem.20231228-1485-hnjytn clean
+
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20231228-1485-hnjytn sitelibdir\=./.gem.20231228-1485-hnjytn
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20231228-1485-hnjytn sitelibdir\=./.gem.20231228-1485-hnjytn install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20231228-1485-hnjytn/racc
+
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20231228-1485-hnjytn sitelibdir\=./.gem.20231228-1485-hnjytn clean

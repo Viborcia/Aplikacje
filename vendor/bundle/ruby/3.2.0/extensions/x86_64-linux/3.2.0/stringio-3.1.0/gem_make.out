@@ -1,0 +1,18 @@
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.0/ext/stringio
+/root/.asdf/installs/ruby/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20231228-1485-brjjjw sitelibdir\=./.gem.20231228-1485-brjjjw clean
+
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20231228-1485-brjjjw sitelibdir\=./.gem.20231228-1485-brjjjw
+compiling stringio.c
+linking shared-object stringio.so
+
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20231228-1485-brjjjw sitelibdir\=./.gem.20231228-1485-brjjjw install
+/usr/bin/install -c -m 0755 stringio.so ./.gem.20231228-1485-brjjjw
+
+current directory: /root/Apki/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20231228-1485-brjjjw sitelibdir\=./.gem.20231228-1485-brjjjw clean
