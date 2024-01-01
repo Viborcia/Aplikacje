@@ -1,0 +1,104 @@
+<%= stylesheet_link_tag('help.css') %>
+
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+    <li><%= link_to "Home", "/index", class:"bookmark", id: "bookmark1" %></li>
+    <li><%= link_to "Logowanie", "/logowanie", class:"bookmark" , id: "bookmark4"%></li>
+    <li><%= link_to "Pomoc", "/help", class:"bookmark", id: "bookmark2" %></li>
+    <li><%= link_to "Autorzy", "/authors", class:"bookmark", id: "bookmark3" %></li>
+</ol>
+</div>
+
+<div class="c">
+<form>
+<input type="search" id="searchInput" placeholder="Szukaj na stronie...">
+<button type="button" class="button" id="searchButton"><b> 🔎 </b></button>
+</form>
+</div>
+
+
+<div class="e">
+<h1> Pomoc </h1>
+<p>Witaj w sekcji pomocy! Znajdziesz tutaj przydatne informacje i zasoby, które pomogą Ci w nawigacji po naszej stronie. </p>
+<h2> FAQ: Najczęściej zadawane pytania </h2>
+
+<div class="faqContainer">
+<div class="faq-question" onclick="toggleFAQ('faq1')">W jakis sposób złożyć pracę dyplomową?<div class="aa">▼</div></div>
+<div class="faq-answer" id="faq1">
+    Aby załadować swoją pracę dyplomową na stronę, zaloguj się a następnie przejdź do sekcji "Praca dyplomowa" i postępuj zgodnie z instrukcjami na ekranie.
+</div>
+<div class="faq-question" onclick="toggleFAQ('faq2')">Gdzie znajdę harmonogram obron prac dyplomowych?<div class="aa">▼</div></div>
+<div class="faq-answer" id="faq2">
+    Harmonogram obron prac dyplomowych dostępny jest w sekcji "Harmonogram". Znajdziesz tam aktualne daty i informacje dotyczące obron.
+</div>
+<div class="faq-question" onclick="toggleFAQ('faq3')">W jaki sposób wystawić ocenę i recenzję pracy dyplomowej studenta?<div class="aa">▼</div></div>
+<div class="faq-answer" id="faq3">
+    Aby wystawić ocenę oraz recenzję do danej pracy dyplomowej przejdź do zakładki "Zarządzanie" i postępuj zgodnie z instrukcjami wyświetlonymi na ekranie.
+</div>
+<div class="faq-question" onclick="toggleFAQ('faq4')">Czy jest możliwość wysłania pracy dyplomowej po terminie?<div class="aa">▼</div></div>
+<div class="faq-answer" id="faq4">
+    W naszym systemie istnieje taka opcja, będzie się to jednak wiązało z obniżeniem oceny przez prowadzącego.
+
+</div>
+</div>
+</div>
+
+<div class="d">
+<div class="contact-container">
+<h1 class="kontakt">Kontakt</h1>
+<p>W razie jakichkolwiek problemów skontaktuj się z nami.</p>
+
+<div class="contact-info">
+    <p><strong>Email:</strong> praca_dyplomowa@gmail.com</p>
+    <p><strong>Telefon:</strong> +48 123 456 789</p>
+    <p><strong>Adres:</strong> ul. Jana Pawła 32, 51-215 Wrocław</p>
+</div>
+</div>
+</div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>
+
+<script>
+    function toggleFAQ(faqId) {
+        var faqAnswer = document.getElementById(faqId);
+        if (faqAnswer.style.display === "block") {
+            faqAnswer.style.display = "none";
+        } else {
+            faqAnswer.style.display = "block";
+        }
+    }
+
+    function redirectToMatchingBookmark() {
+ 
+    var searchText = document.getElementById('searchInput').value.toLowerCase();
+
+    var bookmarks = document.querySelectorAll('.bookmark');
+
+    for (var i = 0; i < bookmarks.length; i++) {
+        var bookmark = bookmarks[i];
+      
+        var bookmarkText = bookmark.innerText.toLowerCase();
+
+        if (bookmarkText.includes(searchText)) {
+            // Przekieruj do pasującej zakładki
+            window.location.href = bookmark.href;
+            return;
+        }
+    }
+
+    alert("Nie znaleziono pasującej zakładki");
+}
+
+document.getElementById('searchButton').addEventListener('click', function() {
+    redirectToMatchingBookmark();
+});
+
+</script>

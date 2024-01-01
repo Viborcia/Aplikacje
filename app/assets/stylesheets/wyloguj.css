@@ -1,9 +1,48 @@
+h2 {
+    margin-top: 160px;
+    text-align: center;
+}
+
+.button {
+    margin-top: 30px;
+    font-family: 'Century Gothic', monospace;
+    border: 3px solid #333;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 25px;
+    font-weight: bold;
+    height:100px;
+    width:300px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #7CB06D;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.g {
+    margin-top: 81px;
+    width: 100%;
+    height: 600px;
+    overflow: auto;
+    background-image: url('tlo1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
 body {
     font-size: 20px;
-    font-family: 'Century Gothic',  monospace; 
     margin: 0%;
     padding: 0%;
-    background-color: #f4f4f4;
+    scroll-behavior: smooth;
 }
 
 .cont {
@@ -23,7 +62,7 @@ body {
 }
 
 .b {
-    display: block;
+    display:block;
     float: left;
     color: #f5f5f5;
     width: 60%;
@@ -40,26 +79,35 @@ body {
 .main {
     position: block;
     width: 100%;
-    padding: 30px;
-    margin-top: 60px;
+    padding: 10px;
+    margin-top: 100px;
 }
 
 .lewy {
-    text-align: justify;
-    padding-left: 50px;
-    margin-top: 20px;
+    padding-left: 0px;
+    margin-top: 0px;
     float: left;
     width: 40%;
+}
+
+.lewy_g {
+  height: 60%;
+}
+
+.lewy_d {
+  padding: 1px;
+  width: 35%;
+  margin-bottom: 0px;
 }
 
 .prawy {
-    padding-left: 240px;
+    padding-top: 25px;
+    padding-left: 260px;
     float: left;
     width: 40%;
-    margin-top: 0;
 }
 
-.button {
+.przycisk {
     border: 3px solid #7CB06D;
     color: #383E42;
     border-radius: 5px;
@@ -68,9 +116,10 @@ body {
     text-align: center;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-.button:hover {
+.przycisk:hover {
     background-color: #7CB06D;
     color: white;
     border-color: #7CB06D;
@@ -84,25 +133,52 @@ footer {
     bottom: 0;
     width: 98%;
     height: 5%;
-    text-align:right;
+    text-align: right;
 }
 
-.bookmark {
-    color: #f5f5f5;
-    text-decoration: none;
-}
 
-h1, h2 {
+h1, h2, h3, h5 {
     color: #333;
 }
 
+h4 {
+  color: #333;
+  border: 3px outset #7CB06D;
+  text-align: center;
+  margin-top: 0px;
+  padding: 0;
+}
+
 .tekst {
-    color: #7CB06D;
-    text-shadow: 0.1em 0.1em 0.2em #bebebe;
-    font-weight: bold;
+  text-align: justify;
+  margin-left: 50px;
+}
+
+.pra {
+  background-color: #7CB06D;
+  border-radius: 8px;
+  border: solid #383E42;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.indeks {
+  text-decoration: double;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  color: #f5f5f5;
+}
+
+.czas {
+  color: #800020;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em gray ;
 }
 
 /* MENU */
+
 ol {
     list-style-type:none;
     padding:0;
@@ -113,7 +189,7 @@ ol {
     text-align:center;
   }
 
-  ol .bookmark {
+  ol .index-link {
     display:block;
     text-decoration:none;
     color:#f5f5f5;
@@ -136,7 +212,38 @@ ol {
     background-color:#EEE;
   }
 
-  ol > li:hover > .bookmark {
+  ol > li:hover > .index-link {
+    color:#7CB06D;
+  }
+
+  ol > li > ul {
+    display:none;
+    list-style-type:none;
+    padding:0;
+    margin:0;
+  }
+
+  ol > li:hover > ul {
+    display:block;
+  }
+
+  ol > li > ul > li {
+    position:relative;
+    background-color:#EEE;
+  }
+
+  ol > li > ul > li > .index-link {
+    display:block;
+    border-top:1px solid #FFF;
+    color: #383E42;
+  }
+
+  ol > li > ul > li:hover {
+    display:block;
+    background-color:#DDD;
+  }
+
+  ol > li > ul > li:hover > .index-link {
     color:#7CB06D;
   }
 

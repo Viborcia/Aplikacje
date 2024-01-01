@@ -1,0 +1,70 @@
+<%= stylesheet_link_tag('materialy.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+<li><%= link_to "Home", "/student", class:"index-link" %></li>
+<li><span class="index-link">Praca dyplomowa</span>
+  <ul>
+    <li><%= link_to "Harmonogram", "/harmonogram", class:"index-link" %></li>
+    <li><%= link_to "Materiały", "/materialy", class:"index-link" %></li>
+    <li><%= link_to "Instrukcja", "/instrukcja", class:"index-link" %></li>
+    <li><%= link_to "Prześlij pracę", "/praca", class:"index-link" %></li>
+  </ul>
+</li>
+<li><%= link_to "Pomoc", "/help", class:"index-link" %></li>
+<li><%= link_to "Wyloguj się", "/wyloguj", class:"index-link" %></li>
+</ol>
+</div>
+
+<div class="c">
+<form>
+<input type="search" placeholder="Szukaj na stronie...">
+<button type="button" class="przycisk"><b> 🔎 </b></button>
+</form>
+</div>
+
+<div class="main">
+<div class="gora">
+<h2>Witaj w zakładce <span class="materialy"> Materiały</span></h2>
+Znajdziesz tutaj przydatne załączniki, które mogą ci pomóc w tworzeniu pracy dyplomowej:
+<p><center><%= image_tag "czapka.png", height: 150 %></center></p>
+</div>
+<div class="dol">
+<table>
+    <tr>
+        <th>Nazwa załącznika</th>
+        <th>Opis</th>
+        <th>Pobieranie</th>
+    </tr>
+<tr>
+    <td>Przewodnik po formatowaniu pracy dyplomowej</td>
+    <td>Wskazówki dotyczące formatowania tekstu, czcionki itp.</td>
+    <td class="przy"><a href="/pdf/praca_dyplomowa.pdf" target="_blank" class="download-button">Pobierz</a></td>
+</tr>
+<tr>
+    <td>Przykładowa struktura pracy dyplomowej</td>
+    <td>Struktura dokumentu i kolejność sekcji</td>
+    <td class="przy"><a href="/pdf/struktura.pdf" target="_blank" class="download-button">Pobierz</a></td>
+</tr>
+<tr>
+    <td>Przykładowy plan badawczy</td>
+    <td>Zarys planu badawczego dla pracy dyplomowej</td>
+    <td class="przy"><a href="/pdf/plan.pdf" target="_blank" class="download-button">Pobierz</a></td>
+</tr>
+    <td>Szablon pracy dyplomowej</td>
+    <td>Szablon do użycia w programie do edycji tekstu</td>
+    <td class="przy"><a href="/pdf/szablon_pracy.docx" target="_blank" class="download-button">Pobierz</a></td>
+</tr>
+</table>
+
+</div>
+</div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>

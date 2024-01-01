@@ -1,0 +1,62 @@
+<%= stylesheet_link_tag('instrukcja.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+<li><%= link_to "Home", "/student", class:"index-link" %></li>
+<li><span class="index-link">Praca dyplomowa</span>
+  <ul>
+    <li><%= link_to "Harmonogram", "/harmonogram", class:"index-link" %></li>
+    <li><%= link_to "Materiały", "/materialy", class:"index-link" %></li>
+    <li><%= link_to "Instrukcja", "/instrukcja", class:"index-link" %></li>
+    <li><%= link_to "Prześlij pracę", "/praca", class:"index-link" %></li>
+  </ul>
+</li>
+<li><%= link_to "Pomoc", "/help", class:"index-link" %></li>
+<li><%= link_to "Wyloguj się", "/wyloguj", class:"index-link" %></li>
+</ol>
+</div>
+
+<div class="c">
+<form>
+<input type="search" placeholder="Szukaj na stronie...">
+<button type="button" class="button"><b> 🔎 </b></button>
+</form>
+</div>
+
+<div class="glowny">
+<div class="ins">
+<h1><span class="indeks">Jak przesłać pracę dyplomową?</span></h1>
+<p class="kroki">1. Przejdź do Sekcji Przesyłania Pracy</p>
+<p class="obsluga">▶ W menu głównym znajdziesz zakładkę <span class="sekcja">"Praca dyplomowa"</span>.
+Po jej rozwinięciu wybierz opcję <span class="sekcja">"Prześlij pracę"</span>.</p>
+<p class="kroki">2. Wybierz plik </p>
+<p class="obsluga">▶ Zlokalizuj pole <span class="sekcja">"Wybierz plik"</span> i kliknij w nie, 
+aby wybrać plik z twojego komputera.</p>
+<p class="kroki">3. Prześlij plik </p>
+<p class="obsluga">▶ Kliknij przycisk <span class="sekcja">"Dodaj pracę"</span> i poczekaj
+aż proces przesyłania zostanie zakończony.</p>
+<p class="kroki">4. Potwierdzenie przesłania</p>
+<p class="obsluga">▶ Po zakończeniu przesyłania, sprawdź czy w sekcji 
+przesłane pliki znajduje się twoja praca dyplomowa.</p>
+<p class="kroki">5. Sprawdź status przesyłania</p>
+<p class="obsluga">▶ Możesz sprawdzić aktualny status przesłania.
+Jeśli plik załaduje się na stronę zobaczysz, że praca została <span class="sekcja">"Przesłana do oceny"</span>,
+w innym przypadku będzie <span class="sekcja">"Niewysłana"</span>.
+<p class="kroki">6. Wiadomość zwrotna od promotora</p>
+<p class="obsluga">▶ Po sprawdzeniu pracy przez promotora, zobaczysz komunikat <span class="sekcja">"Oceniona"</span>
+oraz czy praca została zaakceptowana lub odrzucona. Dodatkowo promotor wyśle też komentarz, który będzie zawierał ocenę
+twojej pracy oraz recenzję w pliku pdf. 
+<p class="kroki">7. Zakończ</p>
+<p class="obsluga">▶ Pamiętaj, aby się wylogować.</p>
+</div>
+</div>
+</div>
+
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>

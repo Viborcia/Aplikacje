@@ -1,0 +1,42 @@
+body {
+    position: block;
+    font-size: 20px;
+    font-family: 'Century Gothic', monospace; 
+    margin: 0%;
+    padding: 0%;
+    background-color: #f4f4f4;
+}
+
+.main {
+    position:fixed;
+    margin: 100px;
+    padding: 0px;
+}
+
+.e {
+    text-align: center; 
+    margin-top: 5px;
+    width: 90%;
+    height: 40%;
+}
+
+.d {
+    float: top;
+    text-align: center;
+    height: 40%;
+    width: 90%;
+}
+
+footer {
+    background-color: #383E42;
+    color: #f5f5f5;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 98%;
+    height: 5%;
+}
+
+h1, h2 {
+    color: #333;
+}

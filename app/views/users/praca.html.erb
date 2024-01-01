@@ -1,0 +1,104 @@
+<%= stylesheet_link_tag('praca.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+<li><%= link_to "Home", "/student", class:"index-link" %></li>
+<li><span class="index-link">Praca dyplomowa</span>
+  <ul>
+    <li><%= link_to "Harmonogram", "/harmonogram", class:"index-link" %></li>
+    <li><%= link_to "Materiały", "/materialy", class:"index-link" %></li>
+    <li><%= link_to "Instrukcja", "/instrukcja", class:"index-link" %></li>
+    <li><%= link_to "Prześlij pracę", "/praca", class:"index-link" %></li>
+  </ul>
+</li>
+<li><%= link_to "Pomoc", "/help", class:"index-link" %></li>
+<li><%= link_to "Wyloguj się", "/wyloguj", class:"index-link" %></li>
+</ol>
+</div>
+
+<div class="c">
+<form>
+<input type="search" placeholder="Szukaj na stronie...">
+<button type="button" class="przycisk"><b> 🔎 </b></button>
+</form>
+</div>
+
+<div class="m">
+<div class="l">
+<h2> Praca dyplomowa </h2>
+<span class="text">Status przesłanego zadania</span>
+
+</div>
+<div class="p">
+<h4>Aktualny czas
+<p id="currentDateTime"></p></h4>
+</div>
+<table>
+<tr class="dwa">
+    <td class="t"> Numer indeksu </td>
+    <td>203244</td>
+</tr>
+<tr>
+    <td class="t">Status przesłanego zadania</td>
+    <td><p><%= @status %></p></td>
+</tr>
+<tr class="dwa">
+    <td class="t">Stan oceniania</td>
+    <td>Nieocenione/Ocenione</td>
+</tr>
+<tr>
+    <td class="t">Weryfikacja</td>
+    <td>Zaakceptowana/Odrzucona</td>
+</tr>
+<tr class="hd">
+    <td class="t">Przesłane pliki</td>
+    <td>
+        <% if @message %>
+            <p style="color: <%= @message.include?('Nie wybrano') ? 'red' : 'green' %>;"><%= @message %></p>
+        <% else %>
+            <p style="color: red">Brak przesłanego pliku.</p>
+        <% end %>
+    </td>
+</tr>
+<tr class="h">
+    <td class="t">Komentarz do przesłanej pracy</td>
+    <td> </td>
+</tr>
+<tr class="hd">
+    <td class="t">Recenzja</td>
+    <td> </td>
+</tr>
+</table>
+<center>
+<%= form_tag({ action: 'upload'}, multipart: true) do %>
+    <%= file_field_tag 'file', class: 'wyslij_prace' %>
+    <%= submit_tag 'Dodaj pracę', class: 'button' %>
+<% end %>
+<p class="praca">W każdej chwili możesz zmienić swoją pracę.</p>
+</center>
+</div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>
+
+<script>
+function updateDateTime() {
+    var currentDate = new Date();
+    var day = currentDate.toLocaleDateString();
+    var time = currentDate.toLocaleTimeString();
+
+    var dateTimeString = day + ' ' + time;
+    document.getElementById('currentDateTime').innerHTML = dateTimeString;
+  }
+
+  setInterval(updateDateTime, 1000);
+
+  window.onload = updateDateTime;
+  </script>
+

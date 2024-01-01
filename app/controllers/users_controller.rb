@@ -22,7 +22,8 @@ class UsersController < ApplicationController
       if user.student? && user.email.end_with?('@student.pwr.edu.pl')
         # Logowanie dla studenta z domeną @student.pwr.edu.pl
         # Przeprowadź odpowiednie akcje
-        <p>Jestes studentem</p>
+        log_in user
+        redirect_to student_path(user)
       elsif user.promoter? && user.email.end_with?('@pwr.edu.pl')
         # Logowanie dla promotora z domeną @pwr.edu.pl
         # Przeprowadź odpowiednie akcje
