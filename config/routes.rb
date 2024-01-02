@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'sessions' }
   resources :dissertations
   resources :users
   #Ogólna
@@ -30,5 +30,6 @@ Rails.application.routes.draw do
 
   get 'praca', to: 'users#praca', as: 'praca'
 
-  get 'users/student'
+  get 'pomoc', to: 'users#pomoc', as: 'pomoc'
+
 end

@@ -8,8 +8,8 @@
 
 .panel {
     float: right;
-    width: 40%;
-    margin-top: 80px;
+    width: 50%;
+    margin-top: 120px;
     margin-left: 30px;
 }
 
@@ -26,7 +26,7 @@
 
 .lewy {
     margin-bottom: 70px;
-    margin-left: 200px;
+    margin-left: 218px;
     float: left;
     width: 30%;
 }
@@ -57,4 +57,27 @@
 
 h1, h2 {
     color: #333;
+}
+
+.but {
+    margin-top: 30px;
+    font-family: 'Century Gothic', monospace;
+    border: 3px solid #333;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 25px;
+    font-weight: bold;
+    height:100px;
+    width:300px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #7CB06D;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.but:hover {
+    background-color: #45a049;
 }

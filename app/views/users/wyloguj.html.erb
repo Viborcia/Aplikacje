@@ -28,8 +28,10 @@
 </div>
 
 <div class="g">
+<% if user_signed_in? %>
 <h2>Czy na pewno chcesz się wylogować?</h2>
-<center><button type="button" class="button">Wyloguj się</button></center>
+<center><%= button_to "Wyloguj się", destroy_user_session_path, method: :delete, class:"button" %></center>
+<% end %>
 </div>
 </div>
 

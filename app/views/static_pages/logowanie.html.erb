@@ -37,9 +37,8 @@
         <% if current_user.admin? %>
             <p> Jestes adminem </p>
         <% end %>
-            <%= button_to "Wyloguj", destroy_user_session_path, method: :delete %>
         <% else %>
-            <%= button_to "Zaloguj", new_user_session_path, class:"button" %>
+            <%= button_to "Zaloguj się", new_user_session_path, class:"but" %>
 <% end %>
 </span>
 </div>
