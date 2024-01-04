@@ -1,61 +1,75 @@
 class DissertationsController < ApplicationController
   before_action :set_dissertation, only: %i[ show edit update destroy ]
+  before_action :authenticate_student!, only: [:create, :show, :check_submission_date_message, :set_submission_time_message]
+
 
   # GET /dissertations or /dissertations.json
   def index
     @dissertations = Dissertation.all
   end
+  
+  def kontrola
+    @dissertations = Dissertation.all
+  end
 
   # GET /dissertations/1 or /dissertations/1.json
+
   def show
+    @dissertation = Dissertation.find(params[:id])
   end
-
-  # GET /dissertations/new
+  
   def new
+    @dissertations = current_user.dissertations || []
     @dissertation = Dissertation.new
+    @submission_message = set_submission_time_message
   end
+    
 
-  # GET /dissertations/1/edit
-  def edit
-  end
 
-  # POST /dissertations or /dissertations.json
+  #Dodawanie pracy dyplomowej przez użytkownika
   def create
-    @dissertation = Dissertation.new(dissertation_params)
+    puts "Params: #{params.inspect}"
+    
+    promoters = User.where(is_promoter: true)
 
-    respond_to do |format|
-      if @dissertation.save
-        format.html { redirect_to dissertation_url(@dissertation), notice: "Dissertation was successfully created." }
-        format.json { render :show, status: :created, location: @dissertation }
+    if current_user.dissertations.exists?
+      flash[:alert] = 'Dodałeś już swoją pracę dyplomową!'
+      redirect_to praca_path
+      return
+    end
+
+    @dissertation = current_user.dissertations.new(dissertation_params)
+    @dissertation.index = current_user.dissertations.count + 1
+    @dissertation.sending_date = Time.now
+    @dissertation.student_index = current_user.index
+    @dissertation.promoter_index = promoters.pluck(:index).sample
+
+
+    if @dissertation.save
+      @dissertation.pdf.attach(params[:dissertation][:pdf])
+      redirect_to praca_path(@dissertation), notice: 'Praca dyplomowa została dodana pomyślnie.'
+    else
+      render :new
+    end
+  end
+
+  #Kontrola czy praca została oddana na czas
+  def set_submission_time_message
+    if current_user.dissertations.exists?
+      submission_date = current_user.dissertations.last.sending_date
+      if submission_date < Date.new(2024, 1, 5)
+        submission_time = (Date.new(2024, 1, 5) - submission_date.to_date).to_i
+        @submission_time_message = "Praca została oddana #{submission_time} dni przed 5 stycznia 2024 roku."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @dissertation.errors, status: :unprocessable_entity }
+        submission_time = (submission_date.to_date - Date.new(2024, 1, 5)).to_i
+        @submission_time_message = "Praca została oddana #{submission_time} dni po 5 stycznia 2024 roku."
       end
+    else
+      @submission_time_message = "Nie masz jeszcze oddanej pracy."
     end
   end
 
-  # PATCH/PUT /dissertations/1 or /dissertations/1.json
-  def update
-    respond_to do |format|
-      if @dissertation.update(dissertation_params)
-        format.html { redirect_to dissertation_url(@dissertation), notice: "Dissertation was successfully updated." }
-        format.json { render :show, status: :ok, location: @dissertation }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @dissertation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
-  # DELETE /dissertations/1 or /dissertations/1.json
-  def destroy
-    @dissertation.destroy
-
-    respond_to do |format|
-      format.html { redirect_to dissertations_url, notice: "Dissertation was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -65,6 +79,11 @@ class DissertationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dissertation_params
-      params.require(:dissertation).permit(:index, :student_index, :promoter_index, :sending_date, :feedback, :mark, :review)
+      params.require(:dissertation).permit(:index, :student_index, :promoter_index, :sending_date, :user_id, :pdf)
     end
+
+    def authenticate_student!
+      redirect_to root_path, alert: 'Brak dostępu.' unless current_user && current_user.is_student?
+    end
+    
 end

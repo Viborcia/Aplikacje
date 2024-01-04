@@ -2,11 +2,17 @@
 <html>
   <head>
     <title>DyplomXpert</title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <% if cookies[:moon] %>
+      <%= stylesheet_link_tag 'application_dark', media: 'all', 'data-turbolinks-track':'reload' %>
+    <% else %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <% end %>
+    
     <%= javascript_importmap_tags %>
   </head>
 

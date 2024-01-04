@@ -98,13 +98,7 @@ footer {
     text-align: right;
 }
 
-
-h1, h2, h3, h5 {
-    color: #333;
-}
-
 h4 {
-  color: #333;
   border: 3px outset #7CB06D;
   text-align: center;
   margin-top: 0px;

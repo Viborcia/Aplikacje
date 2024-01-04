@@ -1,0 +1,2 @@
+<%= image_tag attachment.blob.representation(resize_to_limit: [100, 100]) %>
+<%= link_to 'Delete', polymorphic_path(attachment), method: :delete, data: { confirm: 'Are you sure?' } %>

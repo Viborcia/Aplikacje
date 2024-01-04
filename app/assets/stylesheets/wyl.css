@@ -1,0 +1,152 @@
+.b {
+    display:block;
+    float: left;
+    color: #f5f5f5;
+    width: 90%;
+    height: 10%;
+    padding-top: 20px;
+}
+
+h2 {
+    margin-top: 160px;
+    text-align: center;
+}
+
+.button {
+    margin-top: 30px;
+    font-family: 'Century Gothic', monospace;
+    border: 3px solid #333;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 25px;
+    font-weight: bold;
+    height:100px;
+    width:300px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #7CB06D;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.g {
+    margin-top: 81px;
+    width: 100%;
+    height: 600px;
+    overflow: auto;
+    background-image: url('tlo1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+ol > li {
+    float:left;
+    width:250px;
+    margin-left:0.5px;
+    background-color:#383E42;
+    height:2em;
+  }
+
+  ol {
+    list-style-type:none;
+    padding:0;
+    margin:0;
+    font-size:18px;
+    height:2em;
+    line-height:2em;
+    text-align:center;
+  }
+
+  ol .index-link {
+    display:block;
+    text-decoration:none;
+    color:#f5f5f5;
+    padding:0 5px;
+  }
+
+  ol > li {
+    float:left;
+    width:250px;
+    margin-left:0.5px;
+    background-color:#383E42;
+    height:2em;
+  }
+
+  ol > li:first-child {
+    margin-left:0;
+  }
+
+  ol > li:hover {
+    background-color:#EEE;
+  }
+
+  ol > li:hover > .index-link {
+    color:#7CB06D;
+  }
+
+  ol > li > ul {
+    display:none;
+    list-style-type:none;
+    padding:0;
+    margin:0;
+  }
+
+  ol > li:hover > ul {
+    display:block;
+  }
+
+  ol > li > ul > li {
+    position:relative;
+    background-color:#EEE;
+  }
+
+  ol > li > ul > li > .index-link {
+    display:block;
+    border-top:1px solid #FFF;
+    color: #383E42;
+  }
+
+  ol > li > ul > li:hover {
+    display:block;
+    background-color:#DDD;
+  }
+
+  ol > li > ul > li:hover > .index-link {
+    color:#7CB06D;
+  }
+
+
+.g {
+  margin-top: 81px;
+  margin-left: 0;
+  width: 100%;
+  height: 600px;
+  overflow: auto;
+  background-image: url('tlo1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pra {
+  background-color: #7CB06D;
+  border-radius: 8px;
+  border: solid #383E42;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 400px;
+  margin: 150px 200px 100px 520px;
+  width: 100%;
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+}

@@ -1,0 +1,80 @@
+<%= stylesheet_link_tag('dodaj.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+<li><%= link_to "Home", "/admin", class:"index-link" %></li>
+<li><span class="index-link">Zarządzanie użytkownikami</span>
+  <ul>
+    <li><%= link_to "Wszyscy użytkownicy", "/wszyscy", class:"index-link" %></li>
+    <li><%= link_to "Dodaj użytkownika", "/dodaj", class:"index-link" %></li>
+    <li><%= link_to "Usuń użytkownika", "/usun", class:"index-link" %></li>
+  </ul>
+</li>
+<li><%= link_to "Kontrola prac", "/kontrola", class:"index-link" %></li>
+<li><%= link_to "Konfiguracja", "/konf", class:"index-link" %></li>
+<li><%= link_to "Wyloguj się", "/wyl", class:"index-link" %></li>
+</ol>
+</div>
+
+<div class="ma">
+<center><h1>Dodaj nowego użytkownika do systemu</h1></center>
+<center><p>Określ rolę nowego użytkownika za pomocą <span class="t">Czy student?</span> lub inną, wpisując 1 jako <span class="tr">true</span>, bądź 0 jako 
+<span class="fal">false</span>. Email oraz szyfrowane hasło są konieczne, aby umożliwić użytkownikowi logowanie na stronie.</p></center>
+    
+    <%= form_for @new_user, url: admin_users_path do |f| %>
+
+      <div>
+        <%= f.label :Indeks %>
+        <%= f.text_field :index %>
+      </div>
+    
+      <div>
+        <%= f.label :Hasło %>
+        <%= f.text_field :password %>
+      </div>
+
+      <div>
+        <%= f.label :Czy_student? %>
+        <%= f.text_field :is_student %>
+      </div>
+
+      <div>
+        <%= f.label :Czy_promotor? %>
+        <%= f.text_field :is_promoter %>
+      </div>
+
+      <div>
+        <%= f.label :Czy_admin? %>
+        <%= f.text_field :is_admin %>
+      </div>
+
+      <div>
+      <%= f.label :Email %>
+      <%= f.text_field :email %>
+      </div>
+
+
+      <div>
+      <%= f.label :Szyfrowane_hasło %>
+      <%= f.text_field :encrypted_password %>
+      </div>
+    
+      <div>
+        <%= f.submit 'Dodaj użytkownika' %>
+      </div>
+    <% end %>
+
+    <% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+    <% end %> 
+
+</div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>

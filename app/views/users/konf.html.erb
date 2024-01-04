@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag('konf.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+<li><%= link_to "Home", "/admin", class:"index-link" %></li>
+<li><span class="index-link">Zarządzanie użytkownikami</span>
+  <ul>
+    <li><%= link_to "Wszyscy użytkownicy", "/wszyscy", class:"index-link" %></li>
+    <li><%= link_to "Dodaj użytkownika", "/dodaj", class:"index-link" %></li>
+    <li><%= link_to "Usuń użytkownika", "/usun", class:"index-link" %></li>
+  </ul>
+</li>
+<li><%= link_to "Kontrola prac", "/kontrola", class:"index-link" %></li>
+<li><%= link_to "Konfiguracja", "/konf", class:"index-link" %></li>
+<li><%= link_to "Wyloguj się", "/wyl", class:"index-link" %></li>
+</ol>
+</div>
+
+<div class="main">
+<h1>Zmień wygląd strony dla wszystkich użytkowników!</h1>
+
+<% if cookies[:moon] %>
+<%= button_to 'Tryb jasny', sun_path, method: :get, class: :przycisk%>
+<% else %>
+<%= button_to 'Tryb ciemny', moon_path, method: :get, class: :przycisk%>
+<% end %>
+
+</div>
+</div>
+
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>

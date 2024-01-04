@@ -141,13 +141,7 @@ footer {
   text-align: right;
 }
 
-
-h1, h2, h3, h5 {
-  color: #333;
-}
-
 h4 {
-color: #333;
 border: 3px outset #7CB06D;
 text-align: center;
 margin-top: 0px;
@@ -194,7 +188,7 @@ ol {
   text-align:center;
 }
 
-ol .index-link {
+ol .bookmark {
   display:block;
   text-decoration:none;
   color:#f5f5f5;
@@ -217,7 +211,7 @@ ol > li:hover {
   background-color:#EEE;
 }
 
-ol > li:hover > .index-link {
+ol > li:hover > .bookmark {
   color:#7CB06D;
 }
 
@@ -237,7 +231,7 @@ ol > li > ul > li {
   background-color:#EEE;
 }
 
-ol > li > ul > li > .index-link {
+ol > li > ul > li > .bookmark {
   display:block;
   border-top:1px solid #FFF;
   color: #383E42;
@@ -248,7 +242,7 @@ ol > li > ul > li:hover {
   background-color:#DDD;
 }
 
-ol > li > ul > li:hover > .index-link {
+ol > li > ul > li:hover > .bookmark {
   color:#7CB06D;
 }
 
