@@ -1,0 +1,100 @@
+<%= stylesheet_link_tag('praca.css') %>
+
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+<li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
+<li><%= link_to "Prace Dyplomowe", "/prace", class:"bookmark" , id: "bookmark4"%></li>
+<li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
+<li><%= link_to "Wyloguj", "/wyloguj", class:"bookmark" , id: "bookmark5"%></li>
+</ol>
+</div>
+
+<div class="c">
+<form>
+<input type="search" id="searchInput" placeholder="Szukaj na stronie...">
+<button type="button" class="button" id="searchButton"><b> 🔎 </b></button>
+</form>
+</div>
+
+<div class="main">
+<center><h1>Studenci</h1></center>
+</div>
+
+<div class="table">
+    <table cellspacing="1" cellpadding="15" border="1" style="width: 100%;">
+        <tbody>
+            <td width="25%" valign="top">
+                <center>Indeks studenta</center>
+            </td>
+            <td width="25" valign="top">
+                <center>Temat Pracy Dyplomowej</center>
+            </td>
+            <td width="25%" valign="top">
+                <center>Status Pracy Dyplomowej</center>
+            </td>
+            <td width="25%" valign="top">
+                <center>Praca Dyplomowa</center>
+            </td>
+        </tbody>
+    </table>
+</div>
+
+<% if @dissertations.present? %>
+<% @dissertations.each do |dissertation| %>
+    <tr>
+    <td><%= dissertation.id %></td>
+    <td><%= dissertation.student_index %></td>
+    <td><%= dissertation.pdf.filename %></td>
+    <td><%= dissertation.sending_date %></td>
+    <td class="message-cell"></td>
+    <% end %>
+    </tr>
+    <% else %>
+    <center>Brak prac dyplomowych</center>
+    <% end %>
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>
+
+<script>
+    function toggleFAQ(faqId) {
+        var faqAnswer = document.getElementById(faqId);
+        if (faqAnswer.style.display === "block") {
+            faqAnswer.style.display = "none";
+        } else {
+            faqAnswer.style.display = "block";
+        }
+    }
+
+    function redirectToMatchingBookmark() {
+ 
+    var searchText = document.getElementById('searchInput').value.toLowerCase();
+
+    var bookmarks = document.querySelectorAll('.bookmark');
+
+    for (var i = 0; i < bookmarks.length; i++) {
+        var bookmark = bookmarks[i];
+      
+        var bookmarkText = bookmark.innerText.toLowerCase();
+
+        if (bookmarkText.includes(searchText)) {
+            // Przekieruj do pasującej zakładki
+            window.location.href = bookmark.href;
+            return;
+        }
+    }
+
+    alert("Nie znaleziono pasującej zakładki");
+}
+
+document.getElementById('searchButton').addEventListener('click', function() {
+    redirectToMatchingBookmark();
+});
+
+</script>

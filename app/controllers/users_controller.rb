@@ -1,18 +1,26 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!, only: [:moon, :sun]
 
   # GET /users or /users.json
   def index
     @users = User.all
   end
 
-  # GET /users/1 or /users/1.json
-  def show
+  def wszyscy 
+    @users = User.all
   end
 
-  # GET /users/new
-  def new
-    @user = User.new
+  def dodaj 
+    @new_user = User.new
+  end
+
+  def usun 
+    @users = User.all
+  end
+
+  # GET /users/1 or /users/1.json
+  def show
   end
   
   def create
@@ -22,7 +30,6 @@ class UsersController < ApplicationController
       if user.student? && user.email.end_with?('@student.pwr.edu.pl')
         # Logowanie dla studenta z domeną @student.pwr.edu.pl
         # Przeprowadź odpowiednie akcje
-        student_path
       elsif user.promoter? && user.email.end_with?('@pwr.edu.pl')
         # Logowanie dla promotora z domeną @pwr.edu.pl
         # Przeprowadź odpowiednie akcje
@@ -36,24 +43,8 @@ class UsersController < ApplicationController
       # Obsługa przypadku, gdy użytkownik nie istnieje lub podano błędne dane logowania
     end
   end
-  # GET /users/1/edit
-  def edit
-  end
 
-  # POST /users or /users.json
-  def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
@@ -73,10 +64,33 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to users_url, notice: "Użytkownik został pomyślnie usunięty." }
       format.json { head :no_content }
     end
   end
+
+    #KONFIGURACJA STRONY - ADMIN - ZMIANA WYGLĄDU NA JASNY I CIEMNY
+
+    def moon 
+      cookies[:moon] = {
+        value: 'dark mode on'
+      }
+      if @logged_in_user
+        redirect_to konf_path
+      else
+        redirect_to admin_path
+      end
+    end
+  
+    def sun 
+      cookies.delete(:moon)
+      if @logged_in_user
+        redirect_to konf_path
+      else
+        redirect_to admin_path
+      end
+    end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -86,6 +100,12 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:index, :password, :is_student, :is_promoter, :is_admin)
+      params.require(:user).permit(:index, :password, :is_student, :is_promoter, :is_admin, :email, :encrypted_password)
     end
-end
+
+    def authenticate_admin!
+      redirect_to root_path, alert: 'Brak dostępu.' unless current_user && current_user.is_admin?
+    end
+    
+  end
+

@@ -1,0 +1,176 @@
+<%= stylesheet_link_tag('praca.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+<div class="b">
+<div id="bookmarksContainer">
+<ol>
+<li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
+<li><%= link_to "Prace Dyplomowe", "/prace", class:"bookmark" , id: "bookmark4"%></li>
+<li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
+<li><%= link_to "Wyloguj", "/wyloguj", class:"bookmark" , id: "bookmark5"%></li>
+</ol>
+</div>
+</div>
+
+<div class="c">
+<form>
+<input type="search" id="searchInput" placeholder="Szukaj na stronie...">
+<button type="button" class="button" id="searchButton"><b> 🔎 </b></button>
+</form>
+</div>
+</div>
+
+<div class="main">
+<center><h1>Otrzymane prace od studentów</h1></center>
+</div>
+
+
+<div class="table">
+    <table cellspacing="1" cellpadding="15" border="1" style="width: 100%;">
+        <tbody>
+        <tr class="tr">
+            <td width="25%" valign="top">
+                <center>Indeks studenta:</center>
+            </td>
+            <td width="25" valign="top">
+                <center>student_index</center>
+            </td>
+        </tr>
+        <tr class="tr">
+            <td width="25%" valign="top">
+            <center>Status przesłania Pracy Dyplomowej:</center>
+            </td>
+            <td width="25%" valign="top">
+            <center>Nie próbowano/Przesłana</center>
+            <% if @dissertations.present? %>
+            <% @dissertations.each do |dissertation| %>
+             <% if dissertation.pdf.attached? %>
+            <p class="tex">Przesłano do oceny</p>
+            <% else %>
+            <p class="tex">Brak przesłanych plików</p>
+             <% end %>
+            <% end %>
+             <% else %>
+            <p class="tex">Brak danych</p>
+            <% end %>
+            </td>
+        </tr>
+        <tr class="tr">
+            <td width="25%" valign="top">
+            <center>Ostatnia modyfikacja:</center>
+            </td>
+            <td width="25%" valign="top">
+            <center>Czas</center>
+            </td>
+        </tr> 
+        <tr class="tr">
+            <td width="25%" valign="top">
+            <center>Praca Dyplomowa:</center>
+            </td>
+            <td width="25%" valign="top">
+            <center>Załącznik</center>
+            </td>
+        </tr> 
+        <tr class="tr">
+            <td width="25%" valign="top">
+            <center>Stan oceniania:</center>
+            </td>
+            
+            <td width="25%" valign="top">
+            <%= form_with dissertation: @dissertation do |form| %>
+                <center>
+                <input type="radio" id="zaakceptowana" name="fav_language" value="zaakceptowana">
+                <label for="zaakceptowana">Zaakceptowana</label><br>
+                <input type="radio" id="Niezaakceptowana" name="fav_language" value="Niezaakceptowana">
+                <label for="Niezaakceptowana">Niezaakceptowana</label><br>
+                </center>
+            <tr class="tr">
+            <td width="25%" valign="top">
+            <center>Ocena:</center>
+            </td>
+            <td width="25%" valign="top">
+            <center>
+            <%= form.text_field :mark %>
+                <%= form.submit 'Dodaj ocene'%>
+                <% end %>
+            </center>
+            </td>
+        </tr> 
+        </tr>
+        </tr>
+        <tr class="tr">
+            <td width="25%" valign="top">
+            <center>Recenzja:</center>
+            </td>
+            <td width="25%" valign="top">
+            <%= form_with(model: @dissertation, url: dissertations_path, local: true, html: { multipart: true }) do |form| %>
+                <center> 
+                <div>  
+                 
+                    <%= form.label :recenzja, 'Wybierz plik PDF' %>
+                    <%= form.file_field :recenzja %>
+                    
+                </div>
+                <div>
+                    <%= form.submit 'Dodaj recenzje' %>
+                </div>
+                </center>
+                <% end %>
+            </td>
+        </tr>
+        <tr class="tr">
+            <td width="25%" valign="top">
+            <center>Komentarz:</center>
+            </td>
+            <td width="25%" valign="top">
+            <%= form_with dissertation: @dissertation do |form| %>
+                <center> 
+                <%= form.text_field :feedback %>
+                <%= form.submit 'Dodaj komentarz'%>
+                </center> 
+              <% end %>
+            </td>
+              
+        </tbody>
+    </table>
+</div>
+
+<div class="lewy">
+<br> </br>
+<br> </br>
+</div>
+
+
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>
+
+<script>
+function redirectToMatchingBookmark() {
+ 
+    var searchText = document.getElementById('searchInput').value.toLowerCase();
+
+    var bookmarks = document.querySelectorAll('.bookmark');
+
+    for (var i = 0; i < bookmarks.length; i++) {
+        var bookmark = bookmarks[i];
+      
+        var bookmarkText = bookmark.innerText.toLowerCase();
+
+        if (bookmarkText.includes(searchText)) {
+            // Przekieruj do pasującej zakładki
+            window.location.href = bookmark.href;
+            return;
+        }
+    }
+
+    alert("Nie znaleziono pasującej zakładki");
+}
+
+document.getElementById('searchButton').addEventListener('click', function() {
+    redirectToMatchingBookmark();
+});
+</script>

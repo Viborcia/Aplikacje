@@ -1,0 +1,171 @@
+.b {
+    display:block;
+    float: left;
+    color: #f5f5f5;
+    width: 90%;
+    height: 10%;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+ol {
+    list-style-type:none;
+    padding:0;
+    margin:0;
+    font-size:18px;
+    height:2em;
+    line-height:2em;
+    text-align:center;
+  }
+
+ol .index-link {
+    display:block;
+    text-decoration:none;
+    color:#f5f5f5;
+    padding:0 5px;
+  }
+
+ol > li {
+    float:left;
+    width:250px;
+    margin-left:0.5px;
+    background-color:#383E42;
+    height:2em;
+  }
+
+  ol > li:first-child {
+    margin-left:0;
+  }
+
+  ol > li:hover {
+    background-color:#EEE;
+  }
+
+  ol > li:hover > .index-link {
+    color:#7CB06D;
+  }
+
+  ol > li > ul {
+    display:none;
+    list-style-type:none;
+    padding:0;
+    margin:0;
+  }
+
+  ol > li:hover > ul {
+    display:block;
+  }
+
+  ol > li > ul > li {
+    position:relative;
+    background-color:#EEE;
+  }
+
+  ol > li > ul > li > .index-link {
+    display:block;
+    border-top:1px solid #FFF;
+    color: #383E42;
+  }
+
+  ol > li > ul > li:hover {
+    display:block;
+    background-color:#DDD;
+  }
+
+  ol > li > ul > li:hover > .index-link {
+    color:#7CB06D;
+  }
+
+.ma {
+    margin-top:70px;
+    height: 590px;
+    overflow: auto;
+}
+
+h1 {
+    margin-top: 50px;
+}
+
+form {
+    text-align: center;
+    font-size: 30px;
+    padding: 20px; 
+    border-radius: 5px;
+    border: 3px solid #333;
+    margin: 20px 200px 0px 190px; 
+    background-image: url('tlo1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  form label {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+
+    form input[type="text"]:hover {
+    border-color: #7CB06D;
+  }
+  
+  form input[type="submit"] {
+    font-family: 'Century Gothic';
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #7CB06D;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+  .notice {
+    text-align: center;
+    color: #7CB06D; 
+  }
+
+p {
+  padding: 10px;
+}
+
+footer {
+  background-color: #383E42;
+  color: #f5f5f5;
+  padding: 1em;
+  position: fixed;
+  bottom: 0;
+  width: 98%;
+  height: 5%;
+  text-align:right;
+}
+
+.tr {
+  color: #7CB06D;
+  font-weight: bold;
+}
+
+.fal {
+  color: #800020;
+  font-weight: bold;
+}
+ 
+.t {
+  color: #333;
+  font-weight: bold;
+}

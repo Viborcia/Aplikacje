@@ -7,9 +7,11 @@ class SessionsController < Devise::SessionsController
             elsif current_user.promoter?
               # Logowanie dla promotora z domeną @pwr.edu.pl
               # Przeprowadź odpowiednie akcje
+              promoter_path
             elsif current_user.admin?
               # Logowanie dla admina - dowolna domena
               # Przeprowadź odpowiednie akcje
+              admin_path
             else
               # Obsługa innych przypadków (np. błędne dane logowania)
               root_path

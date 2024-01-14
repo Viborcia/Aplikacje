@@ -8,3 +8,10 @@
   <%= link_to "Show this dissertation", @dissertation %> |
   <%= link_to "Back to dissertations", dissertations_path %>
 </div>
+
+<%= form_for @dissertation do |f| %>
+  <%= f.label :feedback %>
+  <%= f.text_area :feedback %>
+  <%= f.submit 'Dodaj komentarz' %>
+<% end %>
+

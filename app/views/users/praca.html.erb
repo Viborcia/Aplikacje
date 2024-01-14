@@ -5,25 +5,27 @@
 </div>
 
 <div class="b">
+<div id="bookmarksContainer">
 <ol>
-<li><%= link_to "Home", "/student", class:"index-link" %></li>
-<li><span class="index-link">Praca dyplomowa</span>
+<li><%= link_to "Home", "/student", class:"bookmark", id: "bookmark7" %></li>
+<li><span class="bookmark">Praca dyplomowa</span>
   <ul>
-    <li><%= link_to "Harmonogram", "/harmonogram", class:"index-link" %></li>
-    <li><%= link_to "Materiały", "/materialy", class:"index-link" %></li>
-    <li><%= link_to "Instrukcja", "/instrukcja", class:"index-link" %></li>
-    <li><%= link_to "Prześlij pracę", "/praca", class:"index-link" %></li>
+    <li><%= link_to "Harmonogram", "/harmonogram", class:"bookmark", id: "bookmark1" %></li>
+    <li><%= link_to "Materiały", "/materialy", class:"bookmark", id: "bookmark2" %></li>
+    <li><%= link_to "Instrukcja", "/instrukcja", class:"bookmark", id: "bookmark3" %></li>
+    <li><%= link_to "Prześlij pracę", "/praca", class:"bookmark", id: "bookmark4" %></li>
   </ul>
 </li>
-<li><%= link_to "Pomoc", "/pomoc", class:"index-link" %></li>
-<li><%= link_to "Wyloguj się", "/wyloguj", class:"index-link" %></li>
+<li><%= link_to "Pomoc", "/pomoc", class:"bookmark", id: "bookmark5" %></li>
+<li><%= link_to "Wyloguj się", "/wyloguj",class:"bookmark", id: "bookmark6" %></li>
 </ol>
+</div>
 </div>
 
 <div class="c">
 <form>
-<input type="search" placeholder="Szukaj na stronie...">
-<button type="button" class="przycisk"><b> 🔎 </b></button>
+<input type="search" id="searchInput" placeholder="Szukaj na stronie...">
+<button type="button" class="przycisk" id="searchButton"><b> 🔎 </b></button>
 </form>
 </div>
 
@@ -31,20 +33,46 @@
 <div class="l">
 <h2> Praca dyplomowa </h2>
 <span class="text">Status przesłanego zadania</span>
-
 </div>
+
 <div class="p">
 <h4>Aktualny czas
 <p id="currentDateTime"></p></h4>
 </div>
+
 <table>
 <tr class="dwa">
     <td class="t"> Numer indeksu </td>
-    <td>203244</td>
+    <td><%= current_user.index %></td>
+</tr>
+<tr>
+<tr>
+  <td class="t"> Numer indeksu promotora </td>
+  <% if current_user.index < 210010 %>
+      <td><%= current_user.index + 10000 %></td>
+  <% else %>
+    <<td><%= current_user.index + 9990 %></td>
+  <% end %>
+</tr>
+
+
 </tr>
 <tr>
     <td class="t">Status przesłanego zadania</td>
-    <td><p><%= @status %></p></td>
+    <td>
+    # NIE ROZUMIEM PRESENT?
+    <% if @dissertations.present? %>
+    <% @dissertations.each do |dissertation| %>
+      <% if dissertation.pdf.attached? %>
+        <p class="tex">Przesłano do oceny</p>
+      <% else %>
+        <p class="tex">Brak przesłanych plików</p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="tex">Brak danych</p>
+  <% end %>
+    </td>
 </tr>
 <tr class="dwa">
     <td class="t">Stan oceniania</td>
@@ -57,11 +85,10 @@
 <tr class="hd">
     <td class="t">Przesłane pliki</td>
     <td>
-        <% if @message %>
-            <p style="color: <%= @message.include?('Nie wybrano') ? 'red' : 'green' %>;"><%= @message %></p>
-        <% else %>
-            <p style="color: red">Brak przesłanego pliku.</p>
-        <% end %>
+    <% @dissertations.each do |dissertation| %>
+        <p>Nazwa pliku: <%= link_to dissertation.pdf.filename, dissertation.pdf %></p>
+    <br>Data dodania: <%= dissertation.created_at %></br>
+            <% end %>
     </td>
 </tr>
 <tr class="h">
@@ -74,10 +101,19 @@
 </tr>
 </table>
 <center>
-<%= form_tag({ action: 'upload'}, multipart: true) do %>
-    <%= file_field_tag 'file', class: 'wyslij_prace' %>
-    <%= submit_tag 'Dodaj pracę', class: 'button' %>
-<% end %>
+<%= form_with(model: @dissertation, url: dissertations_path, local: true, html: { multipart: true }) do |form| %>
+    <%= form.fields_for :dissertation do |dissertation_form| %>
+      <div>
+        <%= dissertation_form.label :pdf, 'Wybierz plik PDF' %>
+        <%= dissertation_form.file_field :pdf %>
+      </div>
+    <% end %>
+  
+    <div>
+      <%= form.submit 'Dodaj pracę dyplomową' %>
+    </div>
+  <% end %>
+  
 <p class="praca">W każdej chwili możesz zmienić swoją pracę.</p>
 </center>
 </div>
@@ -88,6 +124,33 @@
 </footer>
 
 <script>
+
+function redirectToMatchingBookmark() {
+ 
+var searchText = document.getElementById('searchInput').value.toLowerCase();
+
+var bookmarks = document.querySelectorAll('.bookmark');
+
+for (var i = 0; i < bookmarks.length; i++) {
+    var bookmark = bookmarks[i];
+  
+    var bookmarkText = bookmark.innerText.toLowerCase();
+
+    if (bookmarkText.includes(searchText)) {
+        // Przekieruj do pasującej zakładki
+        window.location.href = bookmark.href;
+        return;
+    }
+}
+
+alert("Nie znaleziono pasującej zakładki");
+}
+
+document.getElementById('searchButton').addEventListener('click', function() {
+redirectToMatchingBookmark();
+});
+
+
 function updateDateTime() {
     var currentDate = new Date();
     var day = currentDate.toLocaleDateString();

@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag('usun.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+<li><%= link_to "Home", "/admin", class:"index-link" %></li>
+<li><span class="index-link">Zarządzanie użytkownikami</span>
+  <ul>
+    <li><%= link_to "Wszyscy użytkownicy", "/wszyscy", class:"index-link" %></li>
+    <li><%= link_to "Dodaj użytkownika", "/dodaj", class:"index-link" %></li>
+    <li><%= link_to "Usuń użytkownika", "/usun", class:"index-link" %></li>
+  </ul>
+</li>
+<li><%= link_to "Kontrola prac", "/kontrola", class:"index-link" %></li>
+<li><%= link_to "Konfiguracja", "/konf", class:"index-link" %></li>
+<li><%= link_to "Wyloguj się", "/wyl", class:"index-link" %></li>
+</ol>
+</div>
+
+<div class="mai">
+<h1>Usuń użytkownika</h1>
+
+<% if flash[:notice] %>
+    <p class="not"><%= flash[:notice] %></p>
+    <% end %> 
+
+<table>
+  <thead>
+    <tr>
+      <th>Id Studenta</th>
+      <th>Nazwa</th>
+      <th>Indeks</th>
+      <th>Rola</th>
+      <th class="akcje">Akcje</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td class="id"><%= user.id %></td>
+        <td><%= user.index %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td class="akcje">
+          <%= button_to 'Usuń', user, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć tego użytkownika?' }, class: "usun"%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>

@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag('admin.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+<li><%= link_to "Home", "/admin", class:"index-link" %></li>
+<li><span class="index-link">Zarządzanie użytkownikami</span>
+  <ul>
+    <li><%= link_to "Wszyscy użytkownicy", "/wszyscy", class:"index-link" %></li>
+    <li><%= link_to "Dodaj użytkownika", "/dodaj", class:"index-link" %></li>
+    <li><%= link_to "Usuń użytkownika", "/usun", class:"index-link" %></li>
+  </ul>
+</li>
+<li><%= link_to "Kontrola prac", "/kontrola", class:"index-link" %></li>
+<li><%= link_to "Konfiguracja", "/konf", class:"index-link" %></li>
+<li><%= link_to "Wyloguj się", "/wyl", class:"index-link" %></li>
+</ol>
+</div>
+</div>
+
+<div class="g">
+<div class="pra">
+<center><h1>Zostałeś zalogowany jako <span class="indeks">Administrator</span></h1></center>
+<center>Twój numer indeksu: <span class="indeks"><%= current_user.index %></span></center>
+</div>
+</div>
+
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>
+

@@ -1,0 +1,94 @@
+<%= stylesheet_link_tag('wszyscy.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<ol>
+<li><%= link_to "Home", "/admin", class:"index-link" %></li>
+<li><span class="index-link">Zarządzanie użytkownikami</span>
+  <ul>
+    <li><%= link_to "Wszyscy użytkownicy", "/wszyscy", class:"index-link" %></li>
+    <li><%= link_to "Dodaj użytkownika", "/dodaj", class:"index-link" %></li>
+    <li><%= link_to "Usuń użytkownika", "/usun", class:"index-link" %></li>
+  </ul>
+</li>
+<li><%= link_to "Kontrola prac", "/kontrola", class:"index-link" %></li>
+<li><%= link_to "Konfiguracja", "/konf", class:"index-link" %></li>
+<li><%= link_to "Wyloguj się", "/wyl", class:"index-link" %></li>
+</ol>
+</div>
+
+<div class="m">
+<h1>Kontrola pracy dyplomowej</h1>
+
+<table id="admin-table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nazwa pliku</th>
+      <th>Indeks studenta</th>
+      <th>Indeks promotora</th>
+      <th>Termin końcowy</th>
+      <th>Termin wysłania</th>
+      <th>Status pracy</th>
+    </tr>
+      <tbody>
+      <% if @dissertations.present? %>
+      <% @dissertations.each do |dissertation| %>
+          <tr>
+          <td><%= dissertation.id %></td>
+          <td><%= dissertation.pdf.filename %></td>
+          <td><%= dissertation.student_index %></td>
+          <td><%= dissertation.promoter_index %></td>
+          <td>2024-01-08</td>
+          <td><%= dissertation.sending_date %></td>
+          <td class="message-cell"></td>
+          <% end %>
+          </tr>
+          <% else %>
+          Brak prac dyplomowych
+          <% end %>
+        </tr>
+      </tbody>
+  </thead>
+  
+</table>
+
+</div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>
+
+
+<script defer>
+var adminRows = document.querySelectorAll('#admin-table tbody tr');
+var finalDeadline = new Date('2024-01-08'); // Ustalona stała data końcowa
+
+adminRows.forEach(function(row) {
+  var submissionDeadlineText = row.querySelector('td:nth-child(6)').innerText;
+  var submissionDeadline = submissionDeadlineText ? new Date(submissionDeadlineText) : null;
+  var messageCell = row.querySelector('.message-cell'); // Kolumna dla komunikatu
+
+  if (submissionDeadline) {
+    if (submissionDeadline <= finalDeadline) {
+      showMessage(messageCell, 'Praca została oddana na czas', 'green');
+    } else {
+      showMessage(messageCell, 'Praca została oddana po terminie', 'red');
+    }
+  } else {
+    showMessage(messageCell, 'Brak wysłanej pracy', 'orange');
+  }
+});
+
+function showMessage(element, message, color) {
+  var messageDiv = document.createElement('div');
+
+  messageDiv.textContent = message;
+  messageDiv.style.color = color;
+  element.appendChild(messageDiv);
+}
+</script>
