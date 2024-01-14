@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag('praca.css') %>
+<%= stylesheet_link_tag('app.css') %>
 
 <div class="cont">
 <div class="a">
@@ -7,10 +7,10 @@
 
 <div class="b">
 <ol>
-<li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
-<li><%= link_to "Prace Dyplomowe", "/prace", class:"bookmark" , id: "bookmark4"%></li>
-<li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
-<li><%= link_to "Wyloguj", "/wyloguj", class:"bookmark" , id: "bookmark5"%></li>
+  <li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
+  <li><%= link_to "Prace Dyplomowe", "/prace", class:"bookmark" , id: "bookmark4"%></li>
+  <li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
+  <li><%= link_to "Wyloguj", "/wyloguj", class:"bookmark" , id: "bookmark5"%></li>
 </ol>
 </div>
 
@@ -24,39 +24,30 @@
 <div class="main">
 <center><h1>Studenci</h1></center>
 </div>
-
-<div class="table">
-    <table cellspacing="1" cellpadding="15" border="1" style="width: 100%;">
-        <tbody>
-            <td width="25%" valign="top">
-                <center>Indeks studenta</center>
-            </td>
-            <td width="25" valign="top">
-                <center>Temat Pracy Dyplomowej</center>
-            </td>
-            <td width="25%" valign="top">
-                <center>Status Pracy Dyplomowej</center>
-            </td>
-            <td width="25%" valign="top">
-                <center>Praca Dyplomowa</center>
-            </td>
-        </tbody>
-    </table>
-</div>
-
-<% if @dissertations.present? %>
-<% @dissertations.each do |dissertation| %>
+<h1>Users</h1>
+<table>
+  <tr>
+    <th>Praca dyplomowa ID</th>
+    <th>Student index</th>
+    <th>Promotor index</th>
+    <th>Data wysłania</th>
+    <th>Ocena</th>
+    <th>Twój komentarz</th>
+    <th>Praca Dyplomowa</th>
+    <th>Status przesłąnia</th>
+  </tr>
+  <% @dissertations.each do |dissertation| %>
     <tr>
-    <td><%= dissertation.id %></td>
-    <td><%= dissertation.student_index %></td>
-    <td><%= dissertation.pdf.filename %></td>
-    <td><%= dissertation.sending_date %></td>
-    <td class="message-cell"></td>
-    <% end %>
+    <td><%= link_to dissertation.index, edit_dissertation_path(dissertation) %></td>
+      <td><%= dissertation.student_index %></td>
+      <td><%= dissertation.promoter_index %></td>
+      <td><%= dissertation.sending_date %></td>
+      <td><%= dissertation.mark %></td>
+      <td><%= dissertation.feedback %></td>
+      <%= link_to dissertation.pdf.filename, dissertation.pdf %>
     </tr>
-    <% else %>
-    <center>Brak prac dyplomowych</center>
     <% end %>
+</table>
 
 <footer>
     <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>

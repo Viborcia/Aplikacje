@@ -1,10 +1,14 @@
 class DissertationsController < ApplicationController
   before_action :set_dissertation, only: %i[ show edit update destroy ]
   before_action :authenticate_student!, only: [:create, :show, :check_submission_date_message, :set_submission_time_message]
-
+  before_action :authenticate_promoter!, only: [:update, :show, :check_submission_date_message, :set_submission_time_message]
 
   # GET /dissertations or /dissertations.json
   def index
+    @dissertations = Dissertation.all
+  end
+
+  def studenci
     @dissertations = Dissertation.all
   end
   
@@ -23,10 +27,14 @@ class DissertationsController < ApplicationController
     @dissertation = Dissertation.new
     @submission_message = set_submission_time_message
   end
+
+  def edit
+    @dissertation = Dissertation.find(params[:id])
+  end
     
 
 
-  #Dodawanie pracy dyplomowej przez użytkownika zmiana przy losowaniu promotora
+  #Dodawanie pracy dyplomowej przez użytkownika
   def create
     puts "Params: #{params.inspect}"
     
@@ -57,6 +65,16 @@ class DissertationsController < ApplicationController
     end
   end
 
+  def update
+    @dissertation = Dissertation.find(params[:id])
+    puts "Params: #{params.inspect}"
+    if @dissertation.update(dissertation_params)
+      redirect_to edit_path(@dissertation), notice: 'Komentarz został dodany pomyślnie.'
+    else
+      render :edit
+    end
+  end
+
   #Kontrola czy praca została oddana na czas
   def set_submission_time_message
     if current_user.dissertations.exists?
@@ -83,11 +101,15 @@ class DissertationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dissertation_params
-      params.require(:dissertation).permit(:index, :student_index, :promoter_index, :sending_date, :user_id, :pdf)
+      params.require(:dissertation).permit(:index, :student_index, :promoter_index, :sending_date, :feedback, :mark, :review, :user_id, :pdf)
     end
 
     def authenticate_student!
       redirect_to root_path, alert: 'Brak dostępu.' unless current_user && current_user.is_student?
+    end
+
+    def authenticate_promoter!
+      redirect_to root_path, alert: 'Brak dostępu.' unless current_user && current_user.is_promoter?
     end
     
 end
