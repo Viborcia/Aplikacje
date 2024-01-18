@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag('app.css') %>
+<%= stylesheet_link_tag('studenci.css') %>
 
 <div class="cont">
 <div class="a">
@@ -6,12 +6,13 @@
 </div>
 
 <div class="b">
+<div id="bookmarksContainer">
 <ol>
   <li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
-  <li><%= link_to "Prace Dyplomowe", "/prace", class:"bookmark" , id: "bookmark4"%></li>
   <li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
-  <li><%= link_to "Wyloguj", "/wyloguj", class:"bookmark" , id: "bookmark5"%></li>
+  <li><%= link_to "Wyloguj", "/wylogowanie", class:"bookmark" , id: "bookmark5"%></li>
 </ol>
+</div>
 </div>
 
 <div class="c">
@@ -24,37 +25,39 @@
 <div class="main">
 <center><h1>Studenci</h1></center>
 </div>
-<h1>Users</h1>
 <table>
-  <tr>
-    <th>Praca dyplomowa ID</th>
+<tr class="dwa">
+    <th>Praca dyplomowa</th>
     <th>Student index</th>
     <th>Promotor index</th>
     <th>Data wysłania</th>
+    <th>Status akceptacji</th>
     <th>Ocena</th>
     <th>Twój komentarz</th>
     <th>Praca Dyplomowa</th>
-    <th>Status przesłąnia</th>
+    <th>Recenzja</th>
   </tr>
   <% @dissertations.each do |dissertation| %>
     <tr>
-    <td><%= link_to dissertation.index, edit_dissertation_path(dissertation) %></td>
+    <% if current_user.index == dissertation.promoter_index %>
+    <td><%= link_to "Zaakceptuj pracę dyplomową", edit_dissertation_path(dissertation) %></td>
       <td><%= dissertation.student_index %></td>
       <td><%= dissertation.promoter_index %></td>
       <td><%= dissertation.sending_date %></td>
       <td>
-      <% if dissertation && dissertation.mark.present? && dissertation.mark > 2 %>
+        <% if dissertation && dissertation.mark.present? && dissertation.mark > 2 %>
           <p>Zakceptowana</p>
-    <% else %>
+        <% else %>
         <p>Niezaakceptowana</p>
-    <% end %>
+        <% end %>
     </td>
       <td><%= dissertation.mark %></td>
       <td><%= dissertation.feedback %></td>
-      <%= link_to dissertation.pdf.filename, dissertation.pdf %>
-      <%= link_to dissertation.review_pdf.filename, dissertation.review_pdf if dissertation.review_pdf.attached? %>
+      <td><%= link_to dissertation.pdf.filename, dissertation.pdf %> </td>
+      <td><%= link_to dissertation.review_pdf.filename, dissertation.review_pdf if dissertation.review_pdf.attached? %></td>
     </tr>
     <% end %>
+  <% end %>
 </table>
 
 <footer>

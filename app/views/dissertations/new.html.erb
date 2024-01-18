@@ -62,7 +62,15 @@
 </tr>
 <tr class="dwa">
     <td class="t">Stan oceniania</td>
-    <td>Ocenione/Nieocenione</td>
+    <td>
+    <% @dissertations.each do |dissertation| %>
+      <% if dissertation && dissertation.mark.present? && dissertation.mark > 2 %>
+        <p>Twoja praca została ZAAKCEPTOWANA</p>
+      <% else %>
+      <p>Twoja praca została ODRZUCONA</p>
+      <% end %>
+    <% end %>
+    </td>
 </tr>
 <tr>
     <td class="t">Weryfikacja</td>
@@ -79,16 +87,32 @@
         <% else %>
           Nie wysłałeś jeszcze swojej pracy dyplomowej.
         <% end %>
-      <% end %>
+        <% end %>
     </td>
 </tr>
 <tr class="h">
     <td class="t">Komentarz do przesłanej pracy</td>
-    <td>Tutaj pojawi się tekst wprowadzony przez prowadzącego</td>
+      <td>
+      <% @dissertations.each do |dissertation| %>
+        <% if dissertation.feedback.present? %>
+       <%= dissertation.feedback %>
+        <% else %>
+        Brak komentarza
+        <% end %>
+      <% end %>
+      </td>
 </tr>
 <tr class="hd">
     <td class="t">Recenzja</td>
-    <td>Tutaj pojawi się plik przesłany przez prowadzącego</td>
+    <td>
+    <% @dissertations.each do |dissertation| %>
+      <% if dissertation.review_pdf.present? %>
+      <%= link_to dissertation.review_pdf.filename, dissertation.review_pdf if dissertation.review_pdf.attached? %>
+      <% else %>
+      Tutaj pojawi się recenzja twojego prowadzącego
+      <% end %>
+    <% end %>
+    </td>
 </tr>
 </table>
 <center>

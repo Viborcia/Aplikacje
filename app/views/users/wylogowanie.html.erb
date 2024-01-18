@@ -1,0 +1,63 @@
+<%= stylesheet_link_tag('wyloguj.css') %>
+<div class="cont">
+<div class="a">
+<%= image_tag "logo2.png", height: 90 %>
+</div>
+
+<div class="b">
+<div id="bookmarksContainer">
+<ol>
+  <li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
+  <li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
+  <li><%= link_to "Wyloguj", "/wylogowanie", class:"bookmark" , id: "bookmark5"%></li>
+</ol>
+</div>
+</div>
+
+<div class="c">
+<form>
+<input type="search" id="searchInput" placeholder="Szukaj na stronie...">
+<button type="button" class="przycisk" id="searchButton"><b> 🔎 </b></button>
+</form>
+</div>
+
+<div class="g">
+<% if user_signed_in? %>
+<h2>Czy na pewno chcesz się wylogować?</h2>
+<center><%= button_to "Wyloguj się", destroy_user_session_path, method: :delete, class:"button" %></center>
+<% end %>
+</div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Obsługa Pracy Dyplomowej</p>
+</footer>
+
+<script>
+
+function redirectToMatchingBookmark() {
+ 
+var searchText = document.getElementById('searchInput').value.toLowerCase();
+
+var bookmarks = document.querySelectorAll('.bookmark');
+
+for (var i = 0; i < bookmarks.length; i++) {
+    var bookmark = bookmarks[i];
+  
+    var bookmarkText = bookmark.innerText.toLowerCase();
+
+    if (bookmarkText.includes(searchText)) {
+        // Przekieruj do pasującej zakładki
+        window.location.href = bookmark.href;
+        return;
+    }
+}
+
+alert("Nie znaleziono pasującej zakładki");
+}
+
+document.getElementById('searchButton').addEventListener('click', function() {
+redirectToMatchingBookmark();
+});
+
+</script>

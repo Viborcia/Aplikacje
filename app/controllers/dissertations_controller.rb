@@ -53,7 +53,7 @@ class DissertationsController < ApplicationController
     if current_user.index < 210010
       @dissertation.promoter_index = current_user.index + 10000
     else
-      @dissertation.promoter_index = current_user.index + 9990
+      @dissertation.promoter_index = current_user.index + 9991
     end
 
 

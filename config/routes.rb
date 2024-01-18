@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   
   get 'studenci', to: 'dissertations#studenci', as: 'studenci'
 
+  get 'wylogowanie', to: 'users#wylogowanie', as: 'wylogowanie'
+
    #Admin
 
    get 'admin', to: 'users#admin', as: 'admin'

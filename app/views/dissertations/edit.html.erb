@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag('app.css') %>
+<%= stylesheet_link_tag 'praca.css' %>
 <div class="cont">
 <div class="a">
 <%= image_tag "logo2.png", height: 90 %>
@@ -6,10 +6,9 @@
 <div class="b">
 <div id="bookmarksContainer">
 <ol>
-<li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
-<li><%= link_to "Prace Dyplomowe", "/prace", class:"bookmark" , id: "bookmark4"%></li>
-<li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
-<li><%= link_to "Wyloguj", "/wyloguj", class:"bookmark" , id: "bookmark5"%></li>
+  <li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
+  <li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
+  <li><%= link_to "Wyloguj", "/wylogowanie", class:"bookmark" , id: "bookmark5"%></li>
 </ol>
 </div>
 </div>
@@ -23,65 +22,62 @@
 </div>
 
 <div class="main">
-<center><h1>Otrzymane prace od studentów</h1></center>
+<center><h1>Otrzymane prace od studenta</h1></center>
 </div>
-
-
-<div class="table">
-    <table cellspacing="1" cellpadding="15" border="1" style="width: 100%;">
-        <tbody>
-        <tr class="tr">
-            <td width="25%" valign="top">
-                <center>Indeks studenta:</center>
-            </td>
-            <td width="25" valign="top">
-            <center><%= @dissertation.student_index %></center>
+<table>
+<tr class="dwa">
+    <td class="t"><center> Indeks studenta: </center></td>
+    <td><center><%= @dissertation.student_index %></center></td>
         </tr>
-        <tr class="tr">
-            <td width="25%" valign="top">
-            <center>Status przesłania Pracy Dyplomowej:</center>
-            </td>
-            <td width="25%" valign="top">
+        <tr class="t">  
+        <td class="t"><center>Status przesłania Pracy Dyplomowej:</center></td>
             <% if @dissertation.pdf.attached? %>
-            <p class="tex"><center>Przesłano do oceny</center></p>
+            <td><center> Przesłano do oceny<center></td>
           <% else %>
-            <p class="tex"><center>Brak przesłanych plików</center></p>
+          <td><center>Brak przesłanych plików</center></td>
           <% end %>
-          
-            </td>
         </tr>
-        <tr class="tr">
-            <td width="25%" valign="top">
-            <center>Ostatnia modyfikacja:</center>
-            
-            </td>
-            <td width="25%" valign="top">
-            <center><%= @dissertation.sending_date %></center>
-            </td>
+        <tr class="dwa">
+            <td class="t"><center>Ostatnia modyfikacja:</center></td>
+            <td><center><%= @dissertation.sending_date %></center> </td>
         </tr> 
         <tr class="tr">
-            <td width="25%" valign="top">
-            <center>Praca Dyplomowa:</center>
-            </td>
-            <td width="25%" valign="top">
-            <center><%= link_to @dissertation.pdf.filename %></center>
-            </td>
+            <td class="t"><center>Praca Dyplomowa:</center></td>
+            <td><center><%= link_to @dissertation.pdf.filename %></center></td>
         </tr> 
-        
+        <tr class="dwa">
+        <td class="t"><center>Stan oceniania:</center></td>
+        <td>
+        <%= form_with model: @dissertation, url: dissertation_path(@dissertation), method: :patch do |form| %>
+            <center>
+                        <input type="radio" id="zaakceptowana" name="fav_language" value="zaakceptowana">
+                        <label for="zaakceptowana">Zaakceptowana</label><br>
+                        <input type="radio" id="Niezaakceptowana" name="fav_language" value="Niezaakceptowana">
+                        <label for="Niezaakceptowana">Niezaakceptowana</label><br>
+                        </center>
+        </td>
+        <tr class="tr">
+        <td class="t"><center>Ocena:</center></td>
+        <td><center><%= form.number_field :mark %></center></td>
+        </tr>
+        <tr class="dwa">
+        <td class="t"><center>Komentarz:</center></td>
+        <td><center><%= form.text_field :feedback %></center></td>
+        </tr>
+        <tr class="tr">
+        <td class="t"><center>Recenzja:</center></td>
+        <td><center><%= link_to @dissertation.review_pdf.filename %></center></td>
         </tr>
         
+        </tr>
         </tbody>
     </table>
+    <center><%= form.file_field :review_pdf, class: :button %></center>
+            <center><%= form.submit 'Dodaj recenzje', class: :przycisk %></center>
+          <% end %>
 </div>
 
-<%= form_with model: @dissertation, url: dissertation_path(@dissertation), method: :patch do |form| %>
-    <%= form.number_field :mark %>
-    <%= form.text_field :feedback %>
-    <%= form.file_field :review_pdf, class: :button %><br>
-    <%= form.submit 'Dodaj pracę dyplomową', class: :przycisk %>
-  <% end %>
-  <center>Recenzja:</center>
-  <center><%= link_to @dissertation.review_pdf.filename %></center>
+
 
 <div class="lewy">
 <br> </br>

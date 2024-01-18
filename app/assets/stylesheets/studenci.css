@@ -1,0 +1,32 @@
+table {
+    margin-bottom: 60px;
+    width: 98%;
+    border-collapse: collapse;
+  }
+  
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  td.t {
+    font-weight: bold;
+  }
+  
+  tr.dwa {
+    background-color: #e5e4e2;
+  }
+  
+  tr.h {
+    height: 100px;
+  }
+  
+  tr.hd {
+    height: 100px;
+    background-color: #e5e4e2;
+  }
+  
+  tr:hover {
+    background-color: #7CB06D;
+  }
