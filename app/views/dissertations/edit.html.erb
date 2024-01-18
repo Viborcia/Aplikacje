@@ -77,10 +77,11 @@
 <%= form_with model: @dissertation, url: dissertation_path(@dissertation), method: :patch do |form| %>
     <%= form.number_field :mark %>
     <%= form.text_field :feedback %>
-    <%= form.file_field :pdf, class: :button %><br>
+    <%= form.file_field :review_pdf, class: :button %><br>
     <%= form.submit 'Dodaj pracę dyplomową', class: :przycisk %>
   <% end %>
-  
+  <center>Recenzja:</center>
+  <center><%= link_to @dissertation.review_pdf.filename %></center>
 
 <div class="lewy">
 <br> </br>

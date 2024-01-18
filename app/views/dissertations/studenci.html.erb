@@ -52,6 +52,7 @@
       <td><%= dissertation.mark %></td>
       <td><%= dissertation.feedback %></td>
       <%= link_to dissertation.pdf.filename, dissertation.pdf %>
+      <%= link_to dissertation.review_pdf.filename, dissertation.review_pdf if dissertation.review_pdf.attached? %>
     </tr>
     <% end %>
 </table>

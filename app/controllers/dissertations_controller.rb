@@ -69,7 +69,7 @@ class DissertationsController < ApplicationController
     @dissertation = Dissertation.find(params[:id])
     puts "Params: #{params.inspect}"
     if @dissertation.update(dissertation_params)
-      @dissertation.pdf.attach(params[:dissertation][:pdf+20])
+      @dissertation.update_attachments(params[:dissertation])
       redirect_to edit_dissertation_path(@dissertation), notice: 'Komentarz został dodany pomyślnie.'
     else
       render :edit
