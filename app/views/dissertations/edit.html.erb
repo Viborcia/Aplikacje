@@ -21,8 +21,13 @@
 </div>
 </div>
 
-<div class="main">
-<center><h1>Otrzymane prace od studenta</h1></center>
+<div class="m">
+<div class="l">
+<h2> Otrzymana praca od studenta </h2>
+</div>
+<div class="p">
+<h4>Aktualny czas
+<p id="currentDateTime"></p></h4>
 </div>
 <table>
 <tr class="dwa">
@@ -32,7 +37,11 @@
         <tr class="t">  
         <td class="t"><center>Status przesłania Pracy Dyplomowej:</center></td>
             <% if @dissertation.pdf.attached? %>
-            <td><center> Przesłano do oceny<center></td>
+                <% if @dissertation.mark.present? %>
+                <td class="tex"><center> Oceniona<center></td>
+                <% else %>
+                <td><center> Przesłano do oceny<center></td>
+                <% end %>
           <% else %>
           <td><center>Brak przesłanych plików</center></td>
           <% end %>
@@ -52,17 +61,17 @@
             <center>
                         <input type="radio" id="zaakceptowana" name="fav_language" value="zaakceptowana">
                         <label for="zaakceptowana">Zaakceptowana</label><br>
-                        <input type="radio" id="Niezaakceptowana" name="fav_language" value="Niezaakceptowana">
-                        <label for="Niezaakceptowana">Niezaakceptowana</label><br>
+                        <input type="radio" id="Odrzucona" name="fav_language" value="Odrzucona">
+                        <label for="Odrzucona">Odrzucona</label><br>
                         </center>
         </td>
         <tr class="tr">
         <td class="t"><center>Ocena:</center></td>
-        <td><center><%= form.number_field :mark %></center></td>
+        <td><center><%= form.number_field :mark, class: "pole"  %></center></td>
         </tr>
         <tr class="dwa">
         <td class="t"><center>Komentarz:</center></td>
-        <td><center><%= form.text_field :feedback %></center></td>
+        <td><center><%= form.text_field :feedback, class: "pole" %></center></td>
         </tr>
         <tr class="tr">
         <td class="t"><center>Recenzja:</center></td>
@@ -91,28 +100,59 @@
 </footer>
 
 <script>
+
 function redirectToMatchingBookmark() {
  
-    var searchText = document.getElementById('searchInput').value.toLowerCase();
+var searchText = document.getElementById('searchInput').value.toLowerCase();
 
-    var bookmarks = document.querySelectorAll('.bookmark');
+var bookmarks = document.querySelectorAll('.bookmark');
 
-    for (var i = 0; i < bookmarks.length; i++) {
-        var bookmark = bookmarks[i];
-      
-        var bookmarkText = bookmark.innerText.toLowerCase();
+for (var i = 0; i < bookmarks.length; i++) {
+    var bookmark = bookmarks[i];
+  
+    var bookmarkText = bookmark.innerText.toLowerCase();
 
-        if (bookmarkText.includes(searchText)) {
-            // Przekieruj do pasującej zakładki
-            window.location.href = bookmark.href;
-            return;
-        }
+    if (bookmarkText.includes(searchText)) {
+        // Przekieruj do pasującej zakładki
+        window.location.href = bookmark.href;
+        return;
     }
-
-    alert("Nie znaleziono pasującej zakładki");
 }
 
-document.getElementById('searchButton').addEventListener('click', function() {
-    redirectToMatchingBookmark();
-});
-</script>
+alert("Nie znaleziono pasującej zakładki");
+}
+
+function updateDateTime() {
+    var currentDate = new Date();
+    var day = currentDate.toLocaleDateString();
+    var time = currentDate.toLocaleTimeString();
+
+    var dateTimeString = day + ' ' + time;
+    document.getElementById('currentDateTime').innerHTML = dateTimeString;
+  }
+
+  setInterval(updateDateTime, 1000);
+
+  window.onload = updateDateTime;
+
+
+  var targetDate = new Date("January 5, 2024 00:00:00").getTime();
+
+  var countdownInterval = setInterval(function() {
+      var currentDate = new Date().getTime();
+      var timeDifference = targetDate - currentDate;
+
+      var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      document.getElementById('countdown').innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+      if (timeDifference < 0) {
+          clearInterval(countdownInterval);
+          document.getElementById('countdown').innerHTML = "Czas minął!";
+      }
+  }, 1000);
+  
+
+  </script>

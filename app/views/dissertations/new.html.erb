@@ -54,9 +54,15 @@
     <td class="t">Status przesłanego zadania</td>
     <td>
     <% @dissertations.each do |dissertation| %>
-    <% if dissertation.pdf.attached? %>
-        <p class="tex">Przesłano do oceny</p>
-    <% end %>
+      <% if dissertation.pdf.attached? %>
+        <% if dissertation.mark.present? %>
+          <p class="tex">Oceniona</p>
+        <% else %>
+          <p class="tex">Przesłano do oceny</p>
+        <% end %>
+      <% else %>
+        <p class="tex">Nie przesłano do oceny</p>
+      <% end %>
     <% end %>
     </td>
 </tr>
@@ -64,10 +70,14 @@
     <td class="t">Stan oceniania</td>
     <td>
     <% @dissertations.each do |dissertation| %>
-      <% if dissertation && dissertation.mark.present? && dissertation.mark > 2 %>
-        <p>Twoja praca została ZAAKCEPTOWANA</p>
+      <% if dissertation && dissertation.mark.present? %>
+        <% if dissertation.mark > 2 %>
+          <p class="tex">Twoja praca została ZAAKCEPTOWANA</p>
+        <% else %>
+          <p>Twoja praca została ODRZUCONA</p>
+        <% end %>
       <% else %>
-      <p>Twoja praca została ODRZUCONA</p>
+        <p>Twoja praca nie została oceniona</p>
       <% end %>
     <% end %>
     </td>

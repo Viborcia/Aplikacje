@@ -1,3 +1,10 @@
+.pole {
+  border: 1px solid white;
+  background-color: #7CB06D; 
+  padding: 10px 15px;
+  border-radius: 10px; 
+}
+
 .m {
   height: 550px;
   overflow: auto;
@@ -253,6 +260,8 @@ text-shadow: 0.1em 0.1em 0.2em gray ;
 .l {
 color: #7CB06D;
 }
+
+
 
 /* MENU */
 

@@ -30,3 +30,19 @@ table {
   tr:hover {
     background-color: #7CB06D;
   }
+
+  .p {
+    text-align: right;
+    float: left;
+    width: 18%;
+    margin-bottom: 60px;
+  }
+  
+
+  h4 {
+    border: 3px outset #7CB06D;
+    text-align: center;
+    margin-top: 25px;
+    margin-left: 25px;
+    padding: 0;
+    }
