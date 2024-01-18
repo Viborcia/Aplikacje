@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'sessions' }
-  resources :dissertations, only: [:new, :edit, :create, :update, :destroy]
+  resources :dissertations
   resources :users
   
   namespace :admin do
@@ -40,10 +40,8 @@ Rails.application.routes.draw do
 
   get 'promoter', to: 'users#promoter', as: 'promoter'
 
-  patch 'dissertations/:id', to: 'dissertations#edit'
-
-  get 'prace', to: 'dissertations#edit', as: 'prace'
-
+  patch 'dissertations/:id', to: 'dissertations#edit', as: 'update_dissertation'
+  
   get 'studenci', to: 'dissertations#studenci', as: 'studenci'
 
    #Admin

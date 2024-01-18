@@ -67,68 +67,20 @@
             <center><%= link_to @dissertation.pdf.filename %></center>
             </td>
         </tr> 
-        <tr class="tr">
-            <td width="25%" valign="top">
-            <center>Stan oceniania:</center>
-            </td>
-            
-            <td width="25%" valign="top">
-            <%= form_with model: @dissertation do |form| %>
-                <center>
-                <input type="radio" id="zaakceptowana" name="fav_language" value="zaakceptowana">
-                <label for="zaakceptowana">Zaakceptowana</label><br>
-                <input type="radio" id="Niezaakceptowana" name="fav_language" value="Niezaakceptowana">
-                <label for="Niezaakceptowana">Niezaakceptowana</label><br>
-                </center>
-            <tr class="tr">
-            <td width="25%" valign="top">
-            <center>Ocena:</center>
-            </td>
-            <td width="25%" valign="top">
-            <center>
-            <%= form.number_field :mark %>
-              <% end %>
-            </center>
-            </td>
-        </tr> 
-        </tr>
-        </tr>
-        <tr class="tr">
-            <td width="25%" valign="top">
-            <center>Komentarz:</center>
-            </td>
-            <td width="25%" valign="top">
-            <%= form_with model: @dissertation do |form| %>
-                <center> 
-                <%= form.text_field :feedback %>
-                </center> 
-              <% end %>
-            </td>
-           </tr>   
-        <tr class="tr">
-            <td width="25%" valign="top">
-            <center>Recenzja:</center>
-            </td>
-            <td width="25%" valign="top">
-            <%= form_with(model: @dissertation, url: dissertations_path, local: true, html: { multipart: true }) do |form| %>
-              <center>
-              <%= form.fields_for :dissertation do |dissertation_form| %>  
-              <div>
-                <%= dissertation_form.label :recenzja, 'Wybierz plik PDF' %>
-                    <%= dissertation_form.file_field :recenzja %>
-                </div>
-                </center>
-                <% end %>
-                <div>
-                <%= form.submit 'Dodaj recenzje' %>
-              </div>
-            <% end %>
-            </td>
+        
         </tr>
         
         </tbody>
     </table>
 </div>
+
+<%= form_with model: @dissertation, url: dissertation_path(@dissertation), method: :patch do |form| %>
+    <%= form.number_field :mark %>
+    <%= form.text_field :feedback %>
+    <%= form.file_field :pdf, class: :button %><br>
+    <%= form.submit 'Dodaj pracę dyplomową', class: :przycisk %>
+  <% end %>
+  
 
 <div class="lewy">
 <br> </br>

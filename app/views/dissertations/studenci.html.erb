@@ -42,6 +42,13 @@
       <td><%= dissertation.student_index %></td>
       <td><%= dissertation.promoter_index %></td>
       <td><%= dissertation.sending_date %></td>
+      <td>
+      <% if dissertation && dissertation.mark.present? && dissertation.mark > 2 %>
+          <p>Zakceptowana</p>
+    <% else %>
+        <p>Niezaakceptowana</p>
+    <% end %>
+    </td>
       <td><%= dissertation.mark %></td>
       <td><%= dissertation.feedback %></td>
       <%= link_to dissertation.pdf.filename, dissertation.pdf %>

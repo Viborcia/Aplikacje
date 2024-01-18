@@ -33,87 +33,69 @@
 <div class="l">
 <h2> Praca dyplomowa </h2>
 <span class="text">Status przesłanego zadania</span>
-</div>
 
+<% if flash[:alert].present? %>
+<div id="alert" class="alert">
+  <%= flash[:alert] %>
+</div>
+<% end %>
+
+</div>
 <div class="p">
 <h4>Aktualny czas
 <p id="currentDateTime"></p></h4>
 </div>
-
 <table>
 <tr class="dwa">
     <td class="t"> Numer indeksu </td>
     <td><%= current_user.index %></td>
 </tr>
 <tr>
-<tr>
-  <td class="t"> Numer indeksu promotora </td>
-  <% if current_user.index < 210010 %>
-      <td><%= current_user.index + 10000 %></td>
-  <% else %>
-    <<td><%= current_user.index + 9990 %></td>
-  <% end %>
-</tr>
-
-
-</tr>
-<tr>
     <td class="t">Status przesłanego zadania</td>
     <td>
-    <% if @dissertations.present? %>
     <% @dissertations.each do |dissertation| %>
-      <% if dissertation.pdf.attached? %>
+    <% if dissertation.pdf.attached? %>
         <p class="tex">Przesłano do oceny</p>
-      <% else %>
-        <p class="tex">Brak przesłanych plików</p>
-      <% end %>
     <% end %>
-  <% else %>
-    <p class="tex">Brak danych</p>
-  <% end %>
+    <% end %>
     </td>
 </tr>
 <tr class="dwa">
     <td class="t">Stan oceniania</td>
-    <td>Nieocenione/Ocenione</td>
+    <td>Ocenione/Nieocenione</td>
 </tr>
 <tr>
     <td class="t">Weryfikacja</td>
-    <td>Zaakceptowana/Odrzucona</td>
+    <td>
+    <p><%= @submission_message %></p></td>
 </tr>
 <tr class="hd">
     <td class="t">Przesłane pliki</td>
     <td>
     <% @dissertations.each do |dissertation| %>
-        <p>Nazwa pliku: <%= link_to dissertation.pdf.filename, dissertation.pdf %></p>
-    <br>Data dodania: <%= dissertation.created_at %></br>
-            <% end %>
+        <% if dissertation.pdf.attached? %>
+            <%= link_to dissertation.pdf.blob.filename, rails_blob_path(dissertation.pdf, disposition: "attachment") %>
+            <p>Data wysłania: <%= dissertation.sending_date %></p>
+        <% else %>
+          Nie wysłałeś jeszcze swojej pracy dyplomowej.
+        <% end %>
+      <% end %>
     </td>
 </tr>
 <tr class="h">
     <td class="t">Komentarz do przesłanej pracy</td>
-    <td> </td>
+    <td>Tutaj pojawi się tekst wprowadzony przez prowadzącego</td>
 </tr>
 <tr class="hd">
     <td class="t">Recenzja</td>
-    <td> </td>
+    <td>Tutaj pojawi się plik przesłany przez prowadzącego</td>
 </tr>
 </table>
 <center>
-<%= form_with(model: @dissertation, url: dissertations_path, local: true, html: { multipart: true }) do |form| %>
-    <%= form.fields_for :dissertation do |dissertation_form| %>
-      <div>
-        <%= dissertation_form.label :pdf, 'Wybierz plik PDF' %>
-        <%= dissertation_form.file_field :pdf %>
-      </div>
-    <% end %>
-  
-    <div>
-      <%= form.submit 'Dodaj pracę dyplomową' %>
-    </div>
-  <% end %>
-  
-<p class="praca">W każdej chwili możesz zmienić swoją pracę.</p>
+<%= form_with(model: @dissertation, url: dissertations_path, local: true, multipart: true) do |form| %>
+    <%= form.file_field :pdf, class: :button %><br>
+    <%= form.submit 'Dodaj pracę dyplomową', class: :przycisk %>
+<% end %>
 </center>
 </div>
 </div>
@@ -145,11 +127,6 @@ for (var i = 0; i < bookmarks.length; i++) {
 alert("Nie znaleziono pasującej zakładki");
 }
 
-document.getElementById('searchButton').addEventListener('click', function() {
-redirectToMatchingBookmark();
-});
-
-
 function updateDateTime() {
     var currentDate = new Date();
     var day = currentDate.toLocaleDateString();
@@ -162,5 +139,25 @@ function updateDateTime() {
   setInterval(updateDateTime, 1000);
 
   window.onload = updateDateTime;
-  </script>
 
+
+  var targetDate = new Date("January 5, 2024 00:00:00").getTime();
+
+  var countdownInterval = setInterval(function() {
+      var currentDate = new Date().getTime();
+      var timeDifference = targetDate - currentDate;
+
+      var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      document.getElementById('countdown').innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+      if (timeDifference < 0) {
+          clearInterval(countdownInterval);
+          document.getElementById('countdown').innerHTML = "Czas minął!";
+      }
+  }, 1000);
+  
+
+  </script>
