@@ -106,6 +106,7 @@
       <% @dissertations.each do |dissertation| %>
         <% if dissertation.feedback.present? %>
        <%= dissertation.feedback %>
+       <p>Twoja ocena to: <%= dissertation.mark %></p>
         <% else %>
         Brak komentarza
         <% end %>
@@ -175,7 +176,7 @@ function updateDateTime() {
   window.onload = updateDateTime;
 
 
-  var targetDate = new Date("January 5, 2024 00:00:00").getTime();
+  var targetDate = new Date("January 28, 2024 00:00:00").getTime();
 
   var countdownInterval = setInterval(function() {
       var currentDate = new Date().getTime();

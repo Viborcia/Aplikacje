@@ -52,14 +52,16 @@
       <td>
         <% if dissertation && dissertation.mark.present? && dissertation.mark > 2 %>
           <p>Zakceptowana</p>
-        <% else %>
+        <% elsif dissertation && dissertation.mark.present?%>
         <p>Odrzucona</p>
+        <% else %>
+        <p></p>
         <% end %>
     </td>
       <td><%= dissertation.mark %></td>
       <td><%= dissertation.feedback %></td>
       <td><%= link_to dissertation.pdf.filename, dissertation.pdf %> </td>
-      <td><%= link_to dissertation.review_pdf.filename, dissertation.review_pdf if dissertation.review_pdf.attached? %></td>
+      <td><%= link_to dissertation.review_pdf.filename, dissertation.review_pdf if dissertation.review_pdf.present? %></td>
     </tr>
     <% end %>
   <% end %>

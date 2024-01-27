@@ -52,18 +52,24 @@
         </tr> 
         <tr class="tr">
             <td class="t"><center>Praca Dyplomowa:</center></td>
-            <td><center><%= link_to @dissertation.pdf.filename %></center></td>
+            <% if @dissertation.pdf.attached? %>
+                <td><center><%= link_to @dissertation.pdf.filename %></center></td>
+            <% else %>
+                <td><center>Brak przesłanej pracy</center></td>
+            <% end %>
+            
         </tr> 
         <tr class="dwa">
         <td class="t"><center>Stan oceniania:</center></td>
         <td>
-        <%= form_with model: @dissertation, url: dissertation_path(@dissertation), method: :patch do |form| %>
+        <% @dissertations.each do |dissertation| %>
             <center>
                         <input type="radio" id="zaakceptowana" name="fav_language" value="zaakceptowana">
                         <label for="zaakceptowana">Zaakceptowana</label><br>
                         <input type="radio" id="Odrzucona" name="fav_language" value="Odrzucona">
                         <label for="Odrzucona">Odrzucona</label><br>
-                        </center>
+            </center>
+        
         </td>
         <tr class="tr">
         <td class="t"><center>Ocena:</center></td>
@@ -75,7 +81,12 @@
         </tr>
         <tr class="tr">
         <td class="t"><center>Recenzja:</center></td>
+        <% if @dissertation.review_pdf.attached? %>
         <td><center><%= link_to @dissertation.review_pdf.filename %></center></td>
+        <% else %>
+            <td><center>Brak recenzji</center></td>
+        <% end %>
+        
         </tr>
         
         </tr>

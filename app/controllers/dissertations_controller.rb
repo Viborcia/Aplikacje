@@ -80,12 +80,12 @@ class DissertationsController < ApplicationController
   def set_submission_time_message
     if current_user.dissertations.exists?
       submission_date = current_user.dissertations.last.sending_date
-      if submission_date < Date.new(2024, 1, 8)
-        submission_time = (Date.new(2024, 1, 8) - submission_date.to_date).to_i
-        @submission_time_message = "Praca została oddana #{submission_time} dni przed 5 stycznia 2024 roku."
+      if submission_date < Date.new(2024, 1, 28)
+        submission_time = (Date.new(2024, 1, 28) - submission_date.to_date).to_i
+        @submission_time_message = "Praca została oddana #{submission_time} dni przed 28 stycznia 2024 roku."
       else
-        submission_time = (submission_date.to_date - Date.new(2024, 1, 8)).to_i
-        @submission_time_message = "Praca została oddana #{submission_time} dni po 5 stycznia 2024 roku."
+        submission_time = (submission_date.to_date - Date.new(2024, 1, 28)).to_i
+        @submission_time_message = "Praca została oddana #{submission_time} dni po 28 stycznia 2024 roku."
       end
     else
       @submission_time_message = "Nie masz jeszcze oddanej pracy."
