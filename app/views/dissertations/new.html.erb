@@ -119,6 +119,7 @@
     <% @dissertations.each do |dissertation| %>
       <% if dissertation.review_pdf.present? %>
       <%= link_to dissertation.review_pdf.filename, dissertation.review_pdf if dissertation.review_pdf.attached? %>
+      <p>Data zamieszczenia recenzji: <%= dissertation.updated_at%></p>
       <% else %>
       Tutaj pojawi się recenzja twojego prowadzącego
       <% end %>
