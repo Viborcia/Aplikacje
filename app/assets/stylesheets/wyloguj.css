@@ -1,297 +1,295 @@
 h2 {
-    margin-top: 160px;
-    text-align: center;
+  margin-top: 160px;
+  text-align: center;
 }
 
 .button {
-    margin-top: 30px;
-    font-family: 'Century Gothic', monospace;
-    border: 3px solid #333;
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 25px;
-    font-weight: bold;
-    height:100px;
-    width:300px;
-    text-align: center;
-    text-decoration: none;
-    background-color: #7CB06D;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  margin-top: 30px;
+  font-family: 'Century Gothic', monospace;
+  border: 3px solid #333;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 25px;
+  font-weight: bold;
+  height:100px;
+  width:300px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #7CB06D;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 .g {
-    margin-top: 81px;
-    width: 100%;
-    height: 600px;
-    overflow: auto;
-    background-image: url('tlo1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  margin-top: 81px;
+  width: 100%;
+  height: 600px;
+  overflow: auto;
+  background-image: url('tlo1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 
 body {
-    font-size: 20px;
-    margin: 0%;
-    padding: 0%;
-    scroll-behavior: smooth;
+  font-size: 20px;
+  margin: 0%;
+  padding: 0%;
+  scroll-behavior: smooth;
 }
 
 .cont {
-    position: fixed;
-    width: 100%;
-    height: 10%;
-    top: 0;
-    left: 0;
-    background-color: #383E42;
-    padding: 5px;
+  position: fixed;
+  width: 100%;
+  height: 10%;
+  top: 0;
+  left: 0;
+  background-color: #383E42;
+  padding: 5px;
 }
 
 .a {
-    width: 8%;
-    height: 10%;
-    float: left;
+  width: 8%;
+  height: 10%;
+  float: left;
 }
 
 .b {
-    display:block;
-    float: left;
-    color: #f5f5f5;
-    width: 60%;
-    height: 10%;
-    padding-top: 20px;
+  display:block;
+  float: left;
+  color: #f5f5f5;
+  width: 60%;
+  height: 10%;
+  padding-top: 20px;
 }
 
 .c {
-    float: left;
-    margin-top: 20px;
-    width: 28%;
+  float: left;
+  margin-top: 20px;
+  width: 28%;
 }
 
 .main {
-    position: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 100px;
+  position: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 100px;
 }
 
 .lewy {
-    padding-left: 0px;
-    margin-top: 0px;
-    float: left;
-    width: 40%;
+  padding-left: 0px;
+  margin-top: 0px;
+  float: left;
+  width: 40%;
 }
 
 .lewy_g {
-  height: 60%;
+height: 60%;
 }
 
 .lewy_d {
-  padding: 1px;
-  width: 35%;
-  margin-bottom: 0px;
+padding: 1px;
+width: 35%;
+margin-bottom: 0px;
 }
 
 .prawy {
-    padding-top: 25px;
-    padding-left: 260px;
-    float: left;
-    width: 40%;
+  padding-top: 25px;
+  padding-left: 260px;
+  float: left;
+  width: 40%;
 }
 
 .przycisk {
-    border: 3px solid #7CB06D;
-    color: #383E42;
-    border-radius: 5px;
-    text-decoration: dotted;
-    padding: 10px 20px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+  border: 3px solid #7CB06D;
+  color: #383E42;
+  border-radius: 5px;
+  text-decoration: dotted;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
 .przycisk:hover {
-    background-color: #7CB06D;
-    color: white;
-    border-color: #7CB06D;
+  background-color: #7CB06D;
+  color: white;
+  border-color: #7CB06D;
 }
 
 footer {
-    background-color: #383E42;
-    color: #f5f5f5;
-    padding: 1em;
-    position: fixed;
-    bottom: 0;
-    width: 98%;
-    height: 5%;
-    text-align: right;
+  background-color: #383E42;
+  color: #f5f5f5;
+  padding: 1em;
+  position: fixed;
+  bottom: 0;
+  width: 98%;
+  height: 5%;
+  text-align: right;
 }
 
 
 h1, h2, h3, h5 {
-    color: #333;
+  color: #333;
 }
 
 h4 {
-  color: #333;
-  border: 3px outset #7CB06D;
-  text-align: center;
-  margin-top: 0px;
-  padding: 0;
+color: #333;
+border: 3px outset #7CB06D;
+text-align: center;
+margin-top: 0px;
+padding: 0;
 }
 
 .tekst {
-  text-align: justify;
-  margin-left: 50px;
+text-align: justify;
+margin-left: 50px;
 }
 
 .pra {
-  background-color: #7CB06D;
-  border-radius: 8px;
-  border: solid #383E42;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  max-width: 400px;
-  width: 100%;
-  text-align: center;
+background-color: #7CB06D;
+border-radius: 8px;
+border: solid #383E42;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+padding: 30px;
+max-width: 400px;
+width: 100%;
+text-align: center;
 }
 
 .indeks {
-  text-decoration: double;
-  text-shadow: 0.1em 0.1em 0.2em black;
-  color: #f5f5f5;
+text-decoration: double;
+text-shadow: 0.1em 0.1em 0.2em black;
+color: #f5f5f5;
 }
 
 .czas {
-  color: #800020;
-  font-weight: bold;
-  text-shadow: 0.1em 0.1em 0.2em gray ;
+color: #800020;
+font-weight: bold;
+text-shadow: 0.1em 0.1em 0.2em gray ;
 }
 
-/* MENU */
-
 ol {
-    list-style-type:none;
-    padding:0;
-    margin:0;
-    font-size:18px;
-    height:2em;
-    line-height:2em;
-    text-align:center;
-  }
+list-style-type:none;
+padding:0;
+margin:0;
+font-size:18px;
+height:2em;
+line-height:2em;
+text-align:center;
+}
 
-  ol .index-link {
-    display:block;
-    text-decoration:none;
-    color:#f5f5f5;
-    padding:0 5px;
-  }
+ol .bookmark {
+display:block;
+text-decoration:none;
+color:#f5f5f5;
+padding:0 5px;
+}
 
-  ol > li {
-    float:left;
-    width:180px;
-    margin-left:1px;
-    background-color:#383E42;
-    height:2em;
-  }
+ol > li {
+float:left;
+width:180px;
+margin-left:1px;
+background-color:#383E42;
+height:2em;
+}
 
-  ol > li:first-child {
-    margin-left:0;
-  }
+ol > li:first-child {
+margin-left:0;
+}
 
-  ol > li:hover {
-    background-color:#EEE;
-  }
+ol > li:hover {
+background-color:#EEE;
+}
 
-  ol > li:hover > .index-link {
-    color:#7CB06D;
-  }
+ol > li:hover > .bookmark {
+color:#7CB06D;
+}
 
-  ol > li > ul {
-    display:none;
-    list-style-type:none;
-    padding:0;
-    margin:0;
-  }
+ol > li > ul {
+display:none;
+list-style-type:none;
+padding:0;
+margin:0;
+}
 
-  ol > li:hover > ul {
-    display:block;
-  }
+ol > li:hover > ul {
+display:block;
+}
 
-  ol > li > ul > li {
-    position:relative;
-    background-color:#EEE;
-  }
+ol > li > ul > li {
+position:relative;
+background-color:#EEE;
+}
 
-  ol > li > ul > li > .index-link {
-    display:block;
-    border-top:1px solid #FFF;
-    color: #383E42;
-  }
+ol > li > ul > li > .bookmark {
+display:block;
+border-top:1px solid #FFF;
+color: #383E42;
+}
 
-  ol > li > ul > li:hover {
-    display:block;
-    background-color:#DDD;
-  }
+ol > li > ul > li:hover {
+display:block;
+background-color:#DDD;
+}
 
-  ol > li > ul > li:hover > .index-link {
-    color:#7CB06D;
-  }
+ol > li > ul > li:hover > .bookmark {
+color:#7CB06D;
+}
 
-  /* WYSZUKIWANIE NA STRONIE */
+/* WYSZUKIWANIE NA STRONIE */
 
-  /* Stylowanie podstawowe */
+/* Stylowanie podstawowe */
 input[type="search"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    font-size: 16px;
-    transition: border-color 0.3s;
-    font-family: 'Century Gothic',  monospace; 
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 5px;
+outline: none;
+font-size: 16px;
+transition: border-color 0.3s;
+font-family: 'Century Gothic',  monospace; 
 }
 
 /* Efekt po najechaniu myszą */
 input[type="search"]:hover {
-    border-color: #555;
+border-color: #555;
 }
 
 /* Cień dla efektu uniesionego pola */
 input[type="search"]:focus {
-    box-shadow: 0 0 5px #7CB06D;
-    border-color: #7CB06D;
+box-shadow: 0 0 5px #7CB06D;
+border-color: #7CB06D;
 }
 
 /* Dodatkowy efekt dla przeglądarek obsługujących WebKit, takie jak Chrome lub Safari */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-clear-button {
-    appearance: none;
-    display: none;
+appearance: none;
+display: none;
 }
 
 /* Stylowanie ikony lupy w przeglądarkach obsługujących WebKit */
 input[type="search"]::-webkit-search-icon {
-    appearance: none;
-    background-color: transparent;
+appearance: none;
+background-color: transparent;
 }
 
 /* Dodatkowy efekt dla przeglądarek obsługujących Firefox */
 input[type="search"]::-moz-search-cancel-button,
 input[type="search"]::-moz-search-clear-button {
-    appearance: none;
-    display: none;
+appearance: none;
+display: none;
 }
 
 /* Stylowanie ikony lupy w przeglądarkach obsługujących Firefox */
 input[type="search"]::-moz-search-results {
-    padding: 0;
+padding: 0;
 }

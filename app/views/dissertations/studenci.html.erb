@@ -9,7 +9,7 @@
 <ol>
   <li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
   <li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
-  <li><%= link_to "Wyloguj", "/wylogowanie", class:"bookmark" , id: "bookmark5"%></li>
+  <li><%= link_to "Wyloguj", "/wylogowanie", class:"bookmark" , id: "bookmark3"%></li>
 </ol>
 </div>
 </div>
@@ -23,13 +23,11 @@
 </div>
 <div class="p">
 <h4>Aktualny czas
-<p id="currentDateTime"></p></h4>
+<p id="currentDateTime" ></p></h4>
 </div>
-<div class="main">
+<div class="studenci">
 <center><h1>Studenci</h1></center>
 </div>
-
-
 <table>
 <tr class="dwa">
     <th>Praca dyplomowa</th>
@@ -75,24 +73,28 @@
 
 function redirectToMatchingBookmark() {
  
-var searchText = document.getElementById('searchInput').value.toLowerCase();
+    var searchText = document.getElementById('searchInput').value.toLowerCase();
 
-var bookmarks = document.querySelectorAll('.bookmark');
+    var bookmarks = document.querySelectorAll('.bookmark');
 
-for (var i = 0; i < bookmarks.length; i++) {
-    var bookmark = bookmarks[i];
-  
-    var bookmarkText = bookmark.innerText.toLowerCase();
+    for (var i = 0; i < bookmarks.length; i++) {
+        var bookmark = bookmarks[i];
+      
+        var bookmarkText = bookmark.innerText.toLowerCase();
 
-    if (bookmarkText.includes(searchText)) {
-        // Przekieruj do pasującej zakładki
-        window.location.href = bookmark.href;
-        return;
+        if (bookmarkText.includes(searchText)) {
+            // Przekieruj do pasującej zakładki
+            window.location.href = bookmark.href;
+            return;
+        }
     }
+
+    alert("Nie znaleziono pasującej zakładki");
 }
 
-alert("Nie znaleziono pasującej zakładki");
-}
+document.getElementById('searchButton').addEventListener('click', function() {
+    redirectToMatchingBookmark();
+});
 
 function updateDateTime() {
     var currentDate = new Date();

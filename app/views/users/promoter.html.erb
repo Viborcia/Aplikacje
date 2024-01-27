@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag('app.css') %>
 <div class="cont">
 
 <div class="a">
@@ -10,7 +11,7 @@
 <ol>
   <li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
   <li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
-  <li><%= link_to "Wyloguj", "/wylogowanie", class:"bookmark" , id: "bookmark5"%></li>
+  <li><%= link_to "Wyloguj", "/wylogowanie", class:"bookmark" , id: "bookmark3"%></li>
 </ol>
 </div>
 
@@ -28,12 +29,18 @@
 <center><h1>Witaj Promotorze w systemie obsługi pracy dyplomowej!</h1></center>
 
 <div class="lewy">
+<div class="margines">
 <p>Witaj!</p>
 <p>Zalogowałeś się do portalu obsługi pracy dyplomowej. Tutaj znajdziesz wszystkie niezbędne narzędzia do efektywnej opieki nad pracą dyplomową swojego studenta. Możesz śledzić postępy, udzielać wskazówek, przeglądać dokumenty i komunikować się z uczniem. Dzięki naszym funkcjom, wspieranie rozwoju pracy dyplomowej staje się łatwiejsze i bardziej efektywne. Nie czekaj, zacznij wspierać swoich studentów już teraz! </p>
 </div>
+</div>
 
 <div class="prawy">
-<%= image_tag "logo.png", height: 450 %>
+<div class="pra">
+<center><h1>Zostałeś zalogowany jako <span class="indeks"><%= current_user.index %></span></h1></center>
+<center><h3>Termin oddania pracy dyplomowej przez studentów mija za:</h3></center>
+<span class="czas"><p id="countdown"></p></span>
+</div>
 </div>
 </div>
 </div>
@@ -45,27 +52,59 @@
 
 function redirectToMatchingBookmark() {
  
-    var searchText = document.getElementById('searchInput').value.toLowerCase();
+var searchText = document.getElementById('searchInput').value.toLowerCase();
 
-    var bookmarks = document.querySelectorAll('.bookmark');
+var bookmarks = document.querySelectorAll('.bookmark');
 
-    for (var i = 0; i < bookmarks.length; i++) {
-        var bookmark = bookmarks[i];
-      
-        var bookmarkText = bookmark.innerText.toLowerCase();
+for (var i = 0; i < bookmarks.length; i++) {
+    var bookmark = bookmarks[i];
+  
+    var bookmarkText = bookmark.innerText.toLowerCase();
 
-        if (bookmarkText.includes(searchText)) {
-            // Przekieruj do pasującej zakładki
-            window.location.href = bookmark.href;
-            return;
-        }
+    if (bookmarkText.includes(searchText)) {
+        // Przekieruj do pasującej zakładki
+        window.location.href = bookmark.href;
+        return;
     }
+}
 
-    alert("Nie znaleziono pasującej zakładki");
+alert("Nie znaleziono pasującej zakładki");
 }
 
 document.getElementById('searchButton').addEventListener('click', function() {
-    redirectToMatchingBookmark();
+redirectToMatchingBookmark();
 });
 
+  function updateDateTime() {
+    var currentDate = new Date();
+    var day = currentDate.toLocaleDateString();
+    var time = currentDate.toLocaleTimeString();
+
+    var dateTimeString = day + ' ' + time;
+    document.getElementById('currentDateTime').innerHTML = dateTimeString;
+  }
+
+  setInterval(updateDateTime, 1000);
+
+  window.onload = updateDateTime;
+
+
+  var targetDate = new Date("January 28, 2024 00:00:00").getTime();
+
+  var countdownInterval = setInterval(function() {
+      var currentDate = new Date().getTime();
+      var timeDifference = targetDate - currentDate;
+
+      var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      document.getElementById('countdown').innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+      if (timeDifference < 0) {
+          clearInterval(countdownInterval);
+          document.getElementById('countdown').innerHTML = "Czas minął!";
+      }
+  }, 1000);
+  
 </script>

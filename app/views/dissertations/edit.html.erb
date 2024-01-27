@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag 'praca.css' %>
+<%= stylesheet_link_tag('praca.css') %>
 <div class="cont">
 <div class="a">
 <%= image_tag "logo2.png", height: 90 %>
@@ -6,9 +6,9 @@
 <div class="b">
 <div id="bookmarksContainer">
 <ol>
-  <li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
-  <li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
-  <li><%= link_to "Wyloguj", "/wylogowanie", class:"bookmark" , id: "bookmark5"%></li>
+    <li><%= link_to "Home", "/promoter", class:"bookmark", id: "bookmark1" %></li>
+    <li><%= link_to "Studenci", "/studenci", class:"bookmark", id: "bookmark2" %></li>
+    <li><%= link_to "Wyloguj", "/wylogowanie", class:"bookmark" , id: "bookmark3"%></li>
 </ol>
 </div>
 </div>
@@ -52,17 +52,16 @@
         </tr> 
         <tr class="tr">
             <td class="t"><center>Praca Dyplomowa:</center></td>
-            <% if @dissertation.pdf.attached? %>
-                <td><center><%= link_to @dissertation.pdf.filename %></center></td>
-            <% else %>
-                <td><center>Brak przesłanej pracy</center></td>
-            <% end %>
-            
+                <% if @dissertation.pdf.attached? && @dissertation.pdf.present? %>
+                    <td><center><%= link_to @dissertation.pdf.filename %></center></td>
+                <% else %>
+                    <td><center>Brak przesłanej pracy</center></td>
+                <% end %>
         </tr> 
         <tr class="dwa">
         <td class="t"><center>Stan oceniania:</center></td>
         <td>
-        <% @dissertations.each do |dissertation| %>
+        <%= form_with(model: @dissertation, url: dissertation_path(@dissertation), method: :patch, multipart: true) do |form| %>
             <center>
                         <input type="radio" id="zaakceptowana" name="fav_language" value="zaakceptowana">
                         <label for="zaakceptowana">Zaakceptowana</label><br>
@@ -81,14 +80,12 @@
         </tr>
         <tr class="tr">
         <td class="t"><center>Recenzja:</center></td>
-        <% if @dissertation.review_pdf.attached? %>
-        <td><center><%= link_to @dissertation.review_pdf.filename %></center></td>
-        <% else %>
-            <td><center>Brak recenzji</center></td>
-        <% end %>
-        
+            <% if @dissertation.review_pdf.attached? && @dissertation.review_pdf.present? %>
+            <td><center><%= link_to @dissertation.review_pdf.filename  %></center></td>
+            <% else %>
+                <td><center>Brak recenzji</center></td>
+            <% end %>
         </tr>
-        
         </tr>
         </tbody>
     </table>

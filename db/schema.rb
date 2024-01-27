@@ -46,7 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_171033) do
     t.datetime "sending_date"
     t.string "feedback"
     t.integer "mark"
-    t.string "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"

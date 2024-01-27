@@ -46,9 +46,11 @@ class DissertationsController < ApplicationController
       return
     end
 
+    Time.zone = 'Warsaw'
+
     @dissertation = current_user.dissertations.new(dissertation_params)
     @dissertation.index = current_user.dissertations.count + 1
-    @dissertation.sending_date = Time.now
+    @dissertation.sending_date = Time.zone.now
     @dissertation.student_index = current_user.index
     if current_user.index < 210010
       @dissertation.promoter_index = current_user.index + 10000
@@ -67,7 +69,6 @@ class DissertationsController < ApplicationController
 
   def update
     @dissertation = Dissertation.find(params[:id])
-    puts "Params: #{params.inspect}"
     if @dissertation.update(dissertation_params)
       @dissertation.update_attachments(params[:dissertation])
       redirect_to edit_dissertation_path(@dissertation), notice: 'Komentarz został dodany pomyślnie.'
@@ -102,7 +103,7 @@ class DissertationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dissertation_params
-      params.require(:dissertation).permit(:index, :student_index, :promoter_index, :sending_date, :feedback, :mark, :review, :user_id, :pdf)
+      params.require(:dissertation).permit(:index, :student_index, :promoter_index, :sending_date, :feedback, :mark, :user_id, :pdf, :review_pdf)
     end
 
     def authenticate_student!
