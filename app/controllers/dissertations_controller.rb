@@ -1,10 +1,18 @@
 class DissertationsController < ApplicationController
   before_action :set_dissertation, only: %i[ show edit update destroy ]
   before_action :authenticate_student!, only: [:create, :show, :check_submission_date_message, :set_submission_time_message]
+<<<<<<< HEAD
   before_action :authenticate_promoter!, only: [:update, :show, :check_submission_date_message, :set_submission_time_message]
+=======
+
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 
   # GET /dissertations or /dissertations.json
   def index
+    @dissertations = Dissertation.all
+  end
+  
+  def kontrola
     @dissertations = Dissertation.all
   end
 
@@ -27,13 +35,18 @@ class DissertationsController < ApplicationController
     @dissertation = Dissertation.new
     @submission_message = set_submission_time_message
   end
+    
 
+<<<<<<< HEAD
   def edit
     @dissertation = Dissertation.find(params[:id])
   end
     
 
 
+=======
+
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
   #Dodawanie pracy dyplomowej przez użytkownika
   def create
     puts "Params: #{params.inspect}"
@@ -50,6 +63,7 @@ class DissertationsController < ApplicationController
     @dissertation.index = current_user.dissertations.count + 1
     @dissertation.sending_date = Time.now
     @dissertation.student_index = current_user.index
+<<<<<<< HEAD
     if current_user.index < 210010
       @dissertation.promoter_index = current_user.index + 10000
     else
@@ -92,6 +106,36 @@ class DissertationsController < ApplicationController
   end
 
 
+=======
+    @dissertation.promoter_index = promoters.pluck(:index).sample
+
+
+    if @dissertation.save
+      @dissertation.pdf.attach(params[:dissertation][:pdf])
+      redirect_to praca_path(@dissertation), notice: 'Praca dyplomowa została dodana pomyślnie.'
+    else
+      render :new
+    end
+  end
+
+  #Kontrola czy praca została oddana na czas
+  def set_submission_time_message
+    if current_user.dissertations.exists?
+      submission_date = current_user.dissertations.last.sending_date
+      if submission_date < Date.new(2024, 1, 5)
+        submission_time = (Date.new(2024, 1, 5) - submission_date.to_date).to_i
+        @submission_time_message = "Praca została oddana #{submission_time} dni przed 5 stycznia 2024 roku."
+      else
+        submission_time = (submission_date.to_date - Date.new(2024, 1, 5)).to_i
+        @submission_time_message = "Praca została oddana #{submission_time} dni po 5 stycznia 2024 roku."
+      end
+    else
+      @submission_time_message = "Nie masz jeszcze oddanej pracy."
+    end
+  end
+
+
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -101,15 +145,22 @@ class DissertationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dissertation_params
+<<<<<<< HEAD
       params.require(:dissertation).permit(:index, :student_index, :promoter_index, :sending_date, :verification_date, :feedback, :mark, :user_id, :pdf, :review_pdf)
+=======
+      params.require(:dissertation).permit(:index, :student_index, :promoter_index, :sending_date, :user_id, :pdf)
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
     end
 
     def authenticate_student!
       redirect_to root_path, alert: 'Brak dostępu.' unless current_user && current_user.is_student?
     end
+<<<<<<< HEAD
 
     def authenticate_promoter!
       redirect_to root_path, alert: 'Brak dostępu.' unless current_user && current_user.is_promoter?
     end
+=======
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
     
 end

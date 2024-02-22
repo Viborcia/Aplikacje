@@ -43,6 +43,7 @@
 <table>
 <tr class="dwa">
     <td class="t"> Numer indeksu </td>
+<<<<<<< HEAD
     <td><%= current_user.index %></td>
 </tr>
 <tr>
@@ -73,6 +74,13 @@
     <p class="tex">Brak danych</p>
   <% end %>
     </td>
+=======
+    <td><% current_user.index %></td>
+</tr>
+<tr>
+    <td class="t">Status przesłanego zadania</td>
+    <td><p>XD</p></td>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 </tr>
 <tr class="dwa">
     <td class="t">Stan oceniania</td>
@@ -85,10 +93,17 @@
 <tr class="hd">
     <td class="t">Przesłane pliki</td>
     <td>
+<<<<<<< HEAD
     <% @dissertations.each do |dissertation| %>
         <p>Nazwa pliku: <%= link_to dissertation.pdf.filename, dissertation.pdf %></p>
     <br>Data dodania: <%= dissertation.created_at %></br>
             <% end %>
+=======
+        <% @dissertations.each do |dissertation| %>
+    <p>Nazwa pliku: <%= link_to dissertation.pdf.filename, dissertation.pdf %></p>
+<br>Data dodania: <%= dissertation.created_at %></br>
+        <% end %>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
     </td>
 </tr>
 <tr class="h">
@@ -101,6 +116,7 @@
 </tr>
 </table>
 <center>
+<<<<<<< HEAD
 <%= form_with(model: @dissertation, url: dissertations_path, local: true, html: { multipart: true }) do |form| %>
     <%= form.fields_for :dissertation do |dissertation_form| %>
       <div>
@@ -114,6 +130,17 @@
     </div>
   <% end %>
   
+=======
+    <%= form_with(model: @dissertation, url: dissertations_path, local: true, html: { multipart: true }) do |form| %>
+    <div>    
+        <%= form.label :pdf, 'Wybierz plik PDF' %>
+        <%= form.file_field :pdf %>
+    </div>
+    <div>
+        <%= form.submit 'Dodaj pracę dyplomową' %>
+    </div>
+    <% end %>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 <p class="praca">W każdej chwili możesz zmienić swoją pracę.</p>
 </center>
 </div>

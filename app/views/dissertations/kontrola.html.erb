@@ -42,7 +42,11 @@
           <td><%= dissertation.pdf.filename %></td>
           <td><%= dissertation.student_index %></td>
           <td><%= dissertation.promoter_index %></td>
+<<<<<<< HEAD
           <td>2024-01-08</td>
+=======
+          <td>2024-01-05</td>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
           <td><%= dissertation.sending_date %></td>
           <td class="message-cell"></td>
           <% end %>
@@ -66,7 +70,11 @@
 
 <script defer>
 var adminRows = document.querySelectorAll('#admin-table tbody tr');
+<<<<<<< HEAD
 var finalDeadline = new Date('2024-01-28'); // Ustalona stała data końcowa
+=======
+var finalDeadline = new Date('2024-01-05'); // Ustalona stała data końcowa
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 
 adminRows.forEach(function(row) {
   var submissionDeadlineText = row.querySelector('td:nth-child(6)').innerText;

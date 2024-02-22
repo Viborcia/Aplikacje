@@ -54,6 +54,7 @@
     <td class="t">Status przesłanego zadania</td>
     <td>
     <% @dissertations.each do |dissertation| %>
+<<<<<<< HEAD
       <% if dissertation.pdf.attached? %>
         <% if dissertation.mark.present? %>
           <p class="tex">Oceniona</p>
@@ -63,11 +64,17 @@
       <% else %>
         <p class="tex">Nie przesłano do oceny</p>
       <% end %>
+=======
+    <% if dissertation.pdf.attached? %>
+        <p class="tex">Przesłano do oceny</p>
+    <% end %>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
     <% end %>
     </td>
 </tr>
 <tr class="dwa">
     <td class="t">Stan oceniania</td>
+<<<<<<< HEAD
     <td>
     <% @dissertations.each do |dissertation| %>
       <% if dissertation && dissertation.mark.present? %>
@@ -81,6 +88,9 @@
       <% end %>
     <% end %>
     </td>
+=======
+    <td>Ocenione/Nieocenione</td>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 </tr>
 <tr>
     <td class="t">Weryfikacja</td>
@@ -97,11 +107,16 @@
         <% else %>
           Nie wysłałeś jeszcze swojej pracy dyplomowej.
         <% end %>
+<<<<<<< HEAD
         <% end %>
+=======
+      <% end %>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
     </td>
 </tr>
 <tr class="h">
     <td class="t">Komentarz do przesłanej pracy</td>
+<<<<<<< HEAD
       <td>
       <% @dissertations.each do |dissertation| %>
         <% if dissertation.feedback.present? %>
@@ -125,6 +140,13 @@
       <% end %>
     <% end %>
     </td>
+=======
+    <td>Tutaj pojawi się tekst wprowadzony przez prowadzącego</td>
+</tr>
+<tr class="hd">
+    <td class="t">Recenzja</td>
+    <td>Tutaj pojawi się plik przesłany przez prowadzącego</td>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 </tr>
 </table>
 <center>
@@ -177,7 +199,11 @@ function updateDateTime() {
   window.onload = updateDateTime;
 
 
+<<<<<<< HEAD
   var targetDate = new Date("January 28, 2024 00:00:00").getTime();
+=======
+  var targetDate = new Date("January 5, 2024 00:00:00").getTime();
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 
   var countdownInterval = setInterval(function() {
       var currentDate = new Date().getTime();
@@ -196,4 +222,8 @@ function updateDateTime() {
   }, 1000);
   
 
+<<<<<<< HEAD
   </script>
+=======
+  </script>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b

@@ -131,6 +131,7 @@ border-color: #7CB06D;
 }
 
 footer {
+<<<<<<< HEAD
 background-color: #383E42;
 color: #f5f5f5;
 padding: 1em;
@@ -139,6 +140,16 @@ bottom: 0;
 width: 98%;
 height: 5%;
 text-align: right;
+=======
+  background-color: #383E42;
+  color: #f5f5f5;
+  padding: 1em;
+  position: fixed;
+  bottom: 0;
+  width: 98%;
+  height: 5%;
+  text-align: right;
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 }
 
 h4 {
@@ -189,10 +200,17 @@ text-align:center;
 }
 
 ol .bookmark {
+<<<<<<< HEAD
 display:block;
 text-decoration:none;
 color:#f5f5f5;
 padding:0 5px;
+=======
+  display:block;
+  text-decoration:none;
+  color:#f5f5f5;
+  padding:0 5px;
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 }
 
 ol > li {
@@ -212,7 +230,11 @@ background-color:#EEE;
 }
 
 ol > li:hover > .bookmark {
+<<<<<<< HEAD
 color:#7CB06D;
+=======
+  color:#7CB06D;
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 }
 
 ol > li > ul {
@@ -232,9 +254,15 @@ background-color:#EEE;
 }
 
 ol > li > ul > li > .bookmark {
+<<<<<<< HEAD
 display:block;
 border-top:1px solid #FFF;
 color: #383E42;
+=======
+  display:block;
+  border-top:1px solid #FFF;
+  color: #383E42;
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 }
 
 ol > li > ul > li:hover {
@@ -243,7 +271,11 @@ background-color:#DDD;
 }
 
 ol > li > ul > li:hover > .bookmark {
+<<<<<<< HEAD
 color:#7CB06D;
+=======
+  color:#7CB06D;
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 }
 
 /* WYSZUKIWANIE NA STRONIE */

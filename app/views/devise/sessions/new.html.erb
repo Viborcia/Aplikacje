@@ -32,12 +32,32 @@
 
   <div class="field">
     <%= f.label :password %><br />
+<<<<<<< HEAD
     <%= f.password_field :password, class: "pole", autocomplete: "current-password" %>
+=======
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Zaloguj", class: :button %>
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
   </div>
  
     <%= f.submit "Zaloguj", class:"actions" %>
   
 <% end %>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 </div>
 
 <div class="lewy">

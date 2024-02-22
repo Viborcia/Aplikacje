@@ -16,6 +16,7 @@
 
 
 .contact-container {
+<<<<<<< HEAD
   background-color: #7CB06D;
   border-radius: 8px;
   border: solid #383E42;
@@ -24,6 +25,16 @@
   max-width: 400px;
   width: 100%;
   text-align: center;
+=======
+    background-color: #7CB06D;
+    border-radius: 8px;
+    border: solid #383E42;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+>>>>>>> 9d4a4227e0f5e8b35a63d9ae6cd5293ba455f68b
 }
 
 .kontakt {
